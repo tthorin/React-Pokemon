@@ -1,0 +1,13 @@
+.load-splash-background{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #000;
+	color: white;
+	height: 100vh;
+}
+.load-splash-background > img {
+	width: 30em;
+	filter: drop-shadow(0 0 0.5em white);
+}
