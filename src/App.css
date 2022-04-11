@@ -43,3 +43,46 @@
 	/* font-size: 1.5em; */
 	padding: 0.3em 1em;
 }
+.app-container {
+	display: grid;
+	grid-template-areas:
+	  "h h h"
+	  "n n n"
+	  "a m m"
+	  "f f f";     
+  }
+  header {
+	grid-area: h;
+	background-color: blue;
+	display: flex;
+	width: auto;
+	height: 5em;
+  }
+  nav {
+	grid-area: n;
+	background-color: green;
+	display: flex;
+	width: auto;
+	height: 5em;
+  }
+  aside {
+	grid-area: a;
+	background-color: yellow;
+	display: flex;
+	width: auto;
+	height: 5em;
+  }
+  main {
+	grid-area: m;
+	background-color: lightblue;
+	display: flex;
+	width: auto;
+	height: 5em;
+  }
+  footer {
+	grid-area: f;
+	background-color: blue;
+	display: flex;
+	width: auto;
+	height: 5em;
+  }

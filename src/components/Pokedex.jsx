@@ -1,33 +1,58 @@
 import { capitalize } from "./capitalize"
 import { useState, useEffect } from 'react';
+import BallLoadSpinner from "./BallLoadSpinner";
 
 import "./pokedex.css"
+import PokedexSmallCard from "./PokedexSmallCard";
 
 const Pokedex = ({pokeList}) => {
-	const PAGE_SIZE = 30;
-	const [pagination,setPagination] = useState({first:0,last:PAGE_SIZE});
-	const [filteredList,setFilteredList] = useState(pokeList.slice(pagination.first,pagination.last));
+	const PAGE_SIZE = 20;
+	const [pagination,setPagination] = useState(0);
 	const [fetchedPokemons,setFetchedPokemons] = useState([]);
+	let filteredList = pokeList.slice(pagination,pagination+PAGE_SIZE);
 
-	useEffect(() =>{
-		filteredList.forEach(async p =>{
-			if(!fetchedPokemons.find(f => p.name === f.name) ){
-				console.log("p name:",p.name,"f name:");
-				const response = await fetch(p.url);
-				const data = await response.json();
-				setFetchedPokemons(f => [...f,data]);
+	const updateFetched = async (idx) => {
+		let arr = [];
+		for (let i = idx; i < idx+PAGE_SIZE; i++) {
+			if(!fetchedPokemons.find(f=>f.name===pokeList[i].name)){
+			const response = await fetch(pokeList[i].url);
+			const data = await response.json();
+			arr.push(data);
 			}
-		})
-	},[filteredList]);
+		}
+		setFetchedPokemons(f=>f.concat(arr));
+	}
+
+	useEffect(async () => {
+		updateFetched(pagination);
+	},[]);
+
+	const pagNext = () => {
+		const newPag = pagination + PAGE_SIZE;
+		filteredList = pokeList.slice(newPag,newPag+PAGE_SIZE);
+		setPagination(newPag);
+		updateFetched(newPag);
+	}
+	const pagPrev = () => {
+		const newPag = pagination - PAGE_SIZE;
+		filteredList = pokeList.slice(newPag,newPag+PAGE_SIZE);
+		setPagination(newPag);
+		updateFetched(newPag);
+	}
+
+
+	
 	
 	return(
 		<div className="pokedex">
 			Hello Pokedex
+			<p>showing {pagination+1} - {pagination+PAGE_SIZE} out of {pokeList.length} Pokémons</p>
+			<button disabled={pagination===0} onClick={pagPrev}>Prev</button>
+			<button disabled={pagination+PAGE_SIZE>pokeList.length} onClick={pagNext}>Next</button>
 			<div className="pokedex-container">
-			{filteredList.map(p=>{return (<div key={p.name} className="pokedex-list-item"><p>{capitalize(p.name)}</p></div>)})}
+				{filteredList.map(p=>{return (<PokedexSmallCard key={p.name} pokemon={fetchedPokemons.find(f=>f.name===p.name)}/>)})}
 			</div>
-			<button onClick={()=>{setFilteredList(pokeList.slice(pagination.first,pagination.last));console.log(fetchedPokemons.length)}}>Prev</button>
-			<button onClick={()=>setFilteredList(pokeList.slice(pagination.last,pagination.last+PAGE_SIZE))}>Next</button>
+			<BallLoadSpinner/>
 		</div>
 	)
 }

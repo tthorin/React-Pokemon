@@ -29,22 +29,29 @@ function App() {
   else {
     return (
       <Router>
-        <div>
-          <header></header>
-          <nav>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/pokedex">Pokedex</NavLink>
-          </nav>
-          <main>
-            <Routes>
-              <Route path="/" element={<Pokedex pokeList={pokeList} />} />
-              <Route
-                path="/pokedex"
-                element={<Pokedex pokeList={pokeList} />}
-              />
-            </Routes>
-          </main>
-        </div>
+      <div className="app-container">
+        <header></header>
+        <nav>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/pokedex">Pokedex</NavLink>
+        </nav>
+        <aside>
+        </aside>
+        <main>
+          <Routes>
+            <Route path="/" element={<Pokedex pokeList={pokeList} />} />
+            <Route
+              path="/pokedex"
+              element={<Pokedex pokeList={pokeList} />}
+            />
+          </Routes>
+        </main>
+        <footer>
+        </footer>
+        
+      </div>
+  
+      
       </Router>
     );
   }
