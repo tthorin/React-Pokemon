@@ -43,9 +43,8 @@ const BigCard = ({show,poke}) => {
 	return (
 		<div className="big-card-backdrop" onClick={()=>show(null)}>
 			<section className="big-card">
-			{typeof poke==="object" && poke !== undefined ?(
+			{/* {typeof poke==="object" && poke !== undefined ?(
 				<div className="big-card-content">
-				
 					<p className="poke-id">Id #{poke.id<100?("000"+poke.id).slice(-3):poke.id}</p>
 					<h3 className="poke-name">{capitalize(poke.name)}</h3>
 					<p className="poke-hp">base hp: {poke.stats.find(f=>f.stat.name=="hp").base_stat}</p>
@@ -66,7 +65,30 @@ const BigCard = ({show,poke}) => {
 						</div>
 						)
 					}
-				</div>):<BallLoadSpinner className="poke-ability1"/>}
+				</div>):<BallLoadSpinner className="poke-ability1"/>} */}
+				
+				<div className="big-card-content">
+					<p className="poke-id">Id #{poke.id<100?("000"+poke.id).slice(-3):poke.id}</p>
+					<h3 className="poke-name">{capitalize(poke.name)}</h3>
+					<p className="poke-hp">base hp: {poke.stats.find(f=>f.stat.name=="hp").base_stat}</p>
+					<p className="poke-type">type(s): {poke.types.map(t=>t.type.name).join(" /")}</p>
+					<img className="poke-art" src={poke.sprites.other["official-artwork"]["front_default"]} alt="" />
+					{species ? <p className="poke-species">{species.evolves_from_species!==null?`Evolves from: ${capitalize(species.evolves_from_species.name)}`:""}</p>:""}
+					{abilities[0] ? (
+						<div className="poke-ability0">
+							<p className="poke-ab1">{capitalize(abilities[0].name)}: </p>
+							<p className="poke-ab1-desc">{getAbilityDesc(abilities[0])}</p>
+						</div>
+						):<BallLoadSpinner className="poke-ability0"/>
+					}
+					{abilities[1] && (
+						<div className="poke-ability1">
+							<p className="poke-ab1">{capitalize(abilities[1].name)}: </p>
+							<p className="poke-ab1-desc">{getAbilityDesc(abilities[1])}</p>
+						</div>
+						)
+					}
+				</div>
 			</section>
 		</div>
 
