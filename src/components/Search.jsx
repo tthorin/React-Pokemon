@@ -1,31 +1,19 @@
-import {useState} from 'react'
+import "./search.css";
+import  { useState } from 'react';
 
-const Search = (props) => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [showDropDown,setShowDropDown] = useState(false);
+const Search = ({searchTerm,setSearchTerm}) => {
+	const [isFocused,setIsFocused] = useState(false);
 
     return (
-        <div className="search">
+        <div className={(searchTerm.length>0||isFocused)?"search centered":"search"}>
             <label >Search</label>
-            <input type="text" value={searchTerm} onChange={e=>{
-                setSearchTerm(e.target.value);
-                e.target.value.trim().length > 2
-                  ?setShowDropDown(true)
-                  :setShowDropDown(false)
-                }}/>
-            {showDropDown &&
-            <ul className='search-dropdown-list'>
-                {props.pokeList.map(pokemon => {
-                    if (searchTerm.trim().length > 2 && pokemon.name.includes(searchTerm.toLowerCase())) {
-                        return <li key={pokemon.name} onClick={()=>{
-                                    setSearchTerm(pokemon.name);
-                                    setShowDropDown(false);
-                                    }}>
-                                    {pokemon.name.substring(0,1).toUpperCase()+pokemon.name.substring(1)}
-                                </li>
-                    }
-                })}
-            </ul>}
+            <input type="text" value={searchTerm}
+			 onChange={e=>setSearchTerm(e.target.value.trim())}
+			onFocus={()=>setIsFocused(true)}
+			onBlur={()=>setIsFocused(false)}
+			 />
+			 {isFocused && searchTerm.length<3 ? <p>Search will begin filtering once you've entered at least 3 characters.</p> : null}
+			<button onClick={()=>setSearchTerm('')}>Clear search</button>
         </div>
 
     )

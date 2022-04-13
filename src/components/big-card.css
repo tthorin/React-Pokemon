@@ -1,0 +1,78 @@
+.big-card-backdrop {
+	background-color: #171414c4;
+	height: 100vh;
+	width: 100vw;
+	position: fixed;
+	top: 0;
+	overflow-y: hidden;
+	z-index: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.big-card{
+	border: 3px solid black;
+	width: min-content;
+	padding: 1em;
+	background-color: aliceblue;
+	box-shadow: 5px 5px 5px black;
+
+}
+.big-card-content{
+	display: grid;
+	grid-template-columns: 3em 4em 4em 4em 3em;
+	min-height: 5em;
+	background-color: aliceblue;
+	grid-template-areas: 
+    "id id . hp hp"
+    "name name name type type"
+    "img img img img img"
+    "img img img img img"
+	"species species species species species"
+    "ab0 ab0 ab0 ab0 ab0"
+	"ab1 ab1 ab1 ab1 ab1"
+    ". . s1d s1d s1d"
+    "slot2 slot2 s2d s2d s2d"
+    ". . s2d s2d s2d";
+	justify-content: center;
+	align-items: center;
+}
+.poke-id{
+	grid-area: id;
+	font-weight: bold;
+	color: #ff0000;
+	margin: 0;
+}
+.poke-name{
+	grid-area: name;
+}
+.poke-type{
+	grid-area: type;
+	text-align: end;
+}
+.poke-hp{
+	grid-area: hp;
+}
+.poke-art{
+	grid-area: img;
+	width: 100%;
+	/* border: 1px solid black; */
+}
+.poke-species{
+	grid-area: species;
+}
+.poke-ability0{
+	grid-area: ab0;
+	display:flex;
+}
+.poke-ability1{
+	grid-area: ab1;
+	display:flex;
+}
+.poke-ab1{
+	flex-grow: 1;
+	padding: 0.2em 0.5em;
+}
+.poke-ab1-desc{
+	flex-grow: 2;
+}

@@ -1,0 +1,48 @@
+.search {
+	display: flex;
+	position:relative;
+	width: 100%;
+	align-items: center;
+	justify-content: end;
+	transition: all 0.3s ease-in-out;
+}
+
+.search > input,button,label {
+	font-size: 1.3em;
+	margin: 0.3em 1em;
+}
+.search> button {
+	margin-right: 1.5em;
+}
+
+.search>input{
+	padding: 0.7em 0.5em 0.2em 0.5em;
+	border-width: 0px;
+	border-bottom-width: 2px;
+	border-radius: 0.5em 0.5em 0em 0em;
+}
+.search> input:focus{
+	outline: none;
+	border-color: #56a6eb;
+}
+.search > label{
+	position: absolute;
+	right: 24rem;
+	-webkit-user-select: none;
+	user-select: none;
+	pointer-events: none;
+}
+.search > p {
+	position:absolute;
+	top: 2.3rem;
+	right: 0rem;
+	color: #484848;
+}
+.centered{
+	transform: translate(calc(-50% + 15em),10%);
+}
+.centered>label{
+	font-size: 0.7em;
+	bottom: 2.1rem;
+	right: 26.7rem;
+}

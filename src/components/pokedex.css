@@ -1,47 +1,43 @@
 .pokedex-container {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
-	row-gap: 1em;
-	column-gap: 2em;
-	padding: 0.5em 2em;
+	grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
+	row-gap: 5.5em;
+	column-gap: 4em;
+	padding: 4em 5em;
 }
-.pokedex-container >div{
-	/* width: 10em; */
+
+.pokedex-info-area{
+	display:flex;
+	justify-content:space-evenly;
+	align-items:center;
+	margin: 1em;
 }
-.pokedex-container > div > p{
+.pokedex-info-area>div{
+	display:flex;
+	justify-content:space-evenly;
+	align-items:center;
+	width: 100%;
+}
+.pokedex-info-area p {
 	display:inline-block;
+	margin: 0;
+	font-size: 1.3em;
 }
-.pokedex-list-item{
-	display: flex;
-	background-color: #48b5ba;
+.pokedex-info-area button{
+	font-size: 1.5em;
+	padding: 0.4em 1em;
 }
-.pokedex-small-card {
-	display: flex;
-	background-color: #e94c4c;
-	color: white;
-	align-items: center;
-	justify-content: center;
-	padding: 0.3em 1em;
-}
-.pokedex-small-card > img {
-	width: min-content;
-}
-.ball-load-spinner{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-.ball-load-spinner > img{
-	width:4em;
-
-}
-.ball  {
-	animation-name: spin;
-	animation-duration: 3s;
-	animation-iteration-count: infinite;
-	animation-timing-function: linear;
-}
-
-@keyframes spin {
-	100% {transform: rotate(360deg);}
+.pokedex {
+	background: repeating-linear-gradient(
+			-45deg,
+			#f2f2f2,
+			#f2f2f2 20px,
+			#ececec 20px,
+			#ececec 30px,
+			#f2f2f2 30px,
+			#f2f2f2 60px,
+			#ececec 60px,
+			#ececec 90px
+		);
+	min-height: 81.1vh;
 }
