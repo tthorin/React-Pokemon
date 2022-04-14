@@ -22,13 +22,14 @@
 .big-card-content{
 	display: grid;
 	grid-template-columns: 3em 4em 4em 4em 3em;
+	/* grid-template-columns: repeat(5, 5em); */
 	min-height: 5em;
 	background-color: aliceblue;
 	grid-template-areas: 
-    "id id . hp hp"
-    "name name name type type"
-    "img img img img img"
-    "img img img img img"
+    "id id . . ."
+    "name name hp type type"
+    ". img img img ."
+    ". img img img ."
 	"species species species species species"
     "ab0 ab0 ab0 ab0 ab0"
 	"ab1 ab1 ab1 ab1 ab1"
@@ -37,6 +38,9 @@
     ". . s2d s2d s2d";
 	justify-content: center;
 	align-items: center;
+}
+.big-card-content > p {
+	margin: 0.3em 1em;
 }
 .poke-id{
 	grid-area: id;

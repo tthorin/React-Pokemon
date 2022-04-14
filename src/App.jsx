@@ -31,7 +31,7 @@ function App() {
   else {
     return (
       <Router>
-	  {bigCard && <BigCard poke={bigCard} show={setBigCard}/*pokemon={fetchedPokemons[0]}*//>}
+	    {bigCard && <BigCard poke={bigCard} show={setBigCard}/>}
       <div className="app-container">
         <header>
 			<img src="./src/images/pokemon-logo-png-1444.png" alt="" />
@@ -45,7 +45,7 @@ function App() {
         </aside>
         <main>
           <Routes>
-            <Route path="/" element={<Pokedex pokeList={pokeList} />} />
+            <Route path="/" element={<Pokedex showBig={setBigCard} pokeList={pokeList} />} />
             <Route
               path="/pokedex"
               element={<Pokedex showBig={setBigCard} pokeList={pokeList} />}
