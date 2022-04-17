@@ -1,5 +1,5 @@
 import BallLoadSpinner from "./BallLoadSpinner";
-import { capitalize } from "./capitalize"
+import { capitalize } from "../capitalize"
 import "./pokedex-small-card.css"
 
 const PokedexSmallCard =  ({pokemon,showBig}) => {

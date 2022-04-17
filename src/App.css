@@ -8,36 +8,37 @@ body {
 	display: grid;
 	grid-template-areas:
 	  "h h h"
-	  "n n n"
-	  "a m m"
+	  "n m m"
 	  "f f f";
-	  grid-template-columns: auto 1fr 1fr;     
+	  grid-template-columns: auto 1fr 1fr;
+	  grid-template-rows: auto 1fr auto;
   }
-  header {
+  .app-container > header {
 	grid-area: h;
-	/* background-color: blue; */
 	display: flex;
 	width: auto;
-	/* height: 5em; */
+	/* height: 7em; */
   }
   header > img {
 	  width:15em;
   }
-  nav {
+  /* nav {
 	grid-area: n;
-	/* background-color: green; */
+	background-color: green;
 	border: 2px dotted red;
 	display: flex;
 	width: auto;
 	height: 5em;
 	justify-content: space-evenly;
 	align-items: center;
-  }
-  aside {
-	grid-area: a;
+  } */
+  nav {
+	grid-area: n;
 	background-color: #afafaf;
 	display: flex;
 	flex-direction: column;
+	justify-content: space-evenly;
+	text-align: center;
 	width: 10em;
 	padding: 1em 2em;
 	background: repeating-linear-gradient(
@@ -52,16 +53,28 @@ body {
 			#333333 90px
 		);
   }
-  aside img {
+  nav img {
 	  width:10em;
   }
-  aside > a.active{
+  nav > a.active{
 	  filter: drop-shadow(0px 0px 1em #ffff2d);
   }
   main {
 	grid-area: m;
-	background-color: lightblue;
+	/* background-color: lightblue; */
+	background: repeating-linear-gradient(
+			-45deg,
+			#f2f2f2,
+			#f2f2f2 20px,
+			#ececec 20px,
+			#ececec 30px,
+			#f2f2f2 30px,
+			#f2f2f2 60px,
+			#ececec 60px,
+			#ececec 90px
+		);
 	width: auto;
+	height: calc(100vh - 9.6em);
   }
   footer {
 	grid-area: f;
@@ -69,4 +82,32 @@ body {
 	display: flex;
 	width: auto;
 	height: 4em;
+  }
+  button {
+	  font-family: 'Maven Pro', sans-serif;
+	  appearance: none;
+	  border: none;
+	  border-radius: 0.2em;
+	  padding: 0.2em 0.5em;
+	  text-align: center;
+	  border: 3px solid #f48320;
+	  background-color: #f48320;
+	  color: white;
+	  transition: all 0.2s ease-in-out, transform 0.1s ease-in-out;
+  }
+  button:hover {
+	  cursor: pointer;
+	  background-color: #d66e13;
+	  border-color: #d66e13;
+	  transform: scale(1.05);
+  }
+  button:disabled{
+	  background-color: #f2f2f2;
+	  color: #f2c39a;
+	  border-color: #f2c39a;
+	  cursor:default;
+	  transform: scale(1);
+  }
+  button:active {
+	  transform: scale(1);
   }

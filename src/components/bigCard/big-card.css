@@ -7,8 +7,15 @@
 	overflow-y: hidden;
 	z-index: 1;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+.big-card-backdrop > button {
+	z-index: 2;
+}
+.big-card-backdrop > p {
+	color: aliceblue;
 }
 .big-card{
 	border: 3px solid black;
@@ -21,21 +28,18 @@
 }
 .big-card-content{
 	display: grid;
-	grid-template-columns: 3em 4em 4em 4em 3em;
-	/* grid-template-columns: repeat(5, 5em); */
+	grid-template-columns: 4em 5em 5em 5em 5em 4em;
 	min-height: 5em;
 	background-color: aliceblue;
 	grid-template-areas: 
-    "id id . . ."
-    "name name hp type type"
-    ". img img img ."
-    ". img img img ."
-	"species species species species species"
-    "ab0 ab0 ab0 ab0 ab0"
-	"ab1 ab1 ab1 ab1 ab1"
-    ". . s1d s1d s1d"
-    "slot2 slot2 s2d s2d s2d"
-    ". . s2d s2d s2d";
+    "id id . . . ."
+    "name name hp hp type type"
+    ". img img img img ."
+    ". img img img img ."
+	"species species species species species species"
+    "ab0 ab0 ab0 ab0 ab0 ab0"
+	"ab1 ab1 ab1 ab1 ab1 ab1"
+	"ab2 ab2 ab2 ab2 ab2 ab2";
 	justify-content: center;
 	align-items: center;
 }
@@ -74,10 +78,23 @@
 	grid-area: ab1;
 	display:flex;
 }
-.poke-ab1{
+.poke-ability2{
+	grid-area: ab2;
+	display:flex;
+}
+.poke-ab{
 	flex-grow: 1;
 	padding: 0.2em 0.5em;
 }
-.poke-ab1-desc{
+.poke-ab-desc{
 	flex-grow: 2;
+}
+.big-card-empty-slot{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 20em;
+
 }

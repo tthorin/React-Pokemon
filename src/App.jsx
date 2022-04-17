@@ -6,11 +6,10 @@ import {
   NavLink,
 } from "react-router-dom";
 import "./App.css";
-import Search from "./components/Search";
-import Pokedex from "./components/Pokedex";
-import { createMemoryHistory } from "history";
+import Pokedex from "./components/pokedex/Pokedex";
 import LoadSplash from "./components/LoadSplash";
-import BigCard from "./components/BigCard";
+import BigCardDisplay from "./components/bigCard/BigCardDisplay";
+import TeamCarousel from "./components/carousel/TeamCarousel";
 
 const URL = "https://pokeapi.co/api/v2/";
 const FULL_LIST = "pokemon?limit=1200&offset=0";
@@ -31,25 +30,27 @@ function App() {
   else {
     return (
       <Router>
-	    {bigCard && <BigCard poke={bigCard} show={setBigCard}/>}
+	    {bigCard && <BigCardDisplay poke={bigCard} show={setBigCard}/>}
       <div className="app-container">
         <header>
-			<img src="./src/images/pokemon-logo-png-1444.png" alt="" />
+			<img src="./src/images/pokemon-logo-bw.png" alt="" />
 		</header>
         {/* <nav>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/pokedex">Pokedex</NavLink>
         </nav> */}
-        <aside>
-			<NavLink to="/pokedex"><img src="./src/images/240px-479Rotom-Pokédex_2.png" alt="" /></NavLink>
-        </aside>
+        <nav>
+			<NavLink to="/pokedex"><img src="./src/images/240px-479Rotom-Pokédex_2.png" alt="" />Pokédex</NavLink>
+			<NavLink to="/team"><img src="./src/images/Pokemon-PNG-Pic.png" alt="" />Your Team</NavLink>
+        </nav>
         <main>
           <Routes>
-            <Route path="/" element={<Pokedex showBig={setBigCard} pokeList={pokeList} />} />
             <Route
               path="/pokedex"
               element={<Pokedex showBig={setBigCard} pokeList={pokeList} />}
             />
+            <Route path="/team" element={<TeamCarousel />} />
+			<Route path="/" element={<Pokedex showBig={setBigCard} pokeList={pokeList} />} />
           </Routes>
         </main>
         <footer>

@@ -1,14 +1,12 @@
-import { capitalize } from "./capitalize"
 import { useState, useEffect } from 'react';
-import BigCard from "./BigCard";
-import BallLoadSpinner from "./BallLoadSpinner";
-
 import "./pokedex.css"
 import PokedexSmallCard from "./PokedexSmallCard";
 import Search from "./Search";
+import calculatePageSize from './calculatePageSize';
 
 const Pokedex = ({pokeList,showBig}) => {
-	const PAGE_SIZE = 14;
+	// const PAGE_SIZE = 14;
+	let  PAGE_SIZE = calculatePageSize();
 	const [pagination,setPagination] = useState(0);
 	const [fetchedPokemons,setFetchedPokemons] = useState([]);
 	const [filteredList,setFilteredList] = useState(pokeList.slice(pagination,pagination+PAGE_SIZE));
@@ -38,7 +36,7 @@ const Pokedex = ({pokeList,showBig}) => {
 		updateFetched(newArr);
 	}
 	const pagPrev = () => {
-		const newPag = pagination - PAGE_SIZE;
+		const newPag = (pagination - PAGE_SIZE) < 0 ? 0 : pagination - PAGE_SIZE;
 		const newArr= pokeList.slice(newPag,newPag+PAGE_SIZE);
 		setFilteredList(newArr);
 		setPagination(newPag);
@@ -61,6 +59,7 @@ const Pokedex = ({pokeList,showBig}) => {
 	
 	return(
 		<div className="pokedex">
+		{console.log(calculatePageSize())}
 			<Search pokeList={pokeList} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
 			<div className="pokedex-info-area">
 			{searchTerm.length > 2 ?
@@ -75,7 +74,6 @@ const Pokedex = ({pokeList,showBig}) => {
 				{pagination!==null  && filteredList.map(p=>{return (<PokedexSmallCard key={p.name} showBig={showBig} pokemon={fetchedPokemons.find(f=>f.name===p.name)}/>)})}
 				{filteredList.length === 0 ? <div><img src="./src/images/Spr_5b2_025_m.png" alt="" /> <p>Sorry, nothing found =/</p></div> : null}
 			</div>
-			
 		</div>
 	)
 }
