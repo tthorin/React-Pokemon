@@ -10,6 +10,7 @@ import Pokedex from "./components/pokedex/Pokedex";
 import LoadSplash from "./components/LoadSplash";
 import BigCardDisplay from "./components/bigCard/BigCardDisplay";
 import TeamCarousel from "./components/carousel/TeamCarousel";
+import Home from "./components/Home";
 
 const URL = "https://pokeapi.co/api/v2/";
 const FULL_LIST = "pokemon?limit=1200&offset=0";
@@ -18,6 +19,7 @@ function App() {
   const [pokeList, setPokeList] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [bigCard, setBigCard] = useState(null);
+  const [fetchedPokemons,setFetchedPokemons] = useState([]);
 
   useEffect(async () => {
     const response = await fetch(URL + FULL_LIST);
@@ -47,10 +49,10 @@ function App() {
           <Routes>
             <Route
               path="/pokedex"
-              element={<Pokedex showBig={setBigCard} pokeList={pokeList} />}
+              element={<Pokedex showBig={setBigCard} pokeList={pokeList} fetched={fetchedPokemons} setFetched={setFetchedPokemons} />}
             />
             <Route path="/team" element={<TeamCarousel />} />
-			<Route path="/" element={<Pokedex showBig={setBigCard} pokeList={pokeList} />} />
+			<Route path="/" element={<Home/>}/>
           </Routes>
         </main>
         <footer>

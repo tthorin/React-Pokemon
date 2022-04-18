@@ -1,4 +1,5 @@
 const calculatePageSize = () => {
+	if (!document.querySelector('main')) return 0;
 	const container = document.querySelector('main');
 	const height = container.clientHeight;
 	const width = container.clientWidth;

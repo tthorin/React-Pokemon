@@ -5,7 +5,7 @@
 	align-items: center;
 	background-color: #000;
 	color: white;
-	height: 100vh;
+	height: 100%;
 }
 .load-splash-background > img {
 	width: 30em;

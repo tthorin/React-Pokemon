@@ -4,24 +4,24 @@ import PokedexSmallCard from "./PokedexSmallCard";
 import Search from "./Search";
 import calculatePageSize from './calculatePageSize';
 
-const Pokedex = ({pokeList,showBig}) => {
+const Pokedex = ({fetched,setFetched,pokeList,showBig}) => {
 	// const PAGE_SIZE = 14;
 	let  PAGE_SIZE = calculatePageSize();
 	const [pagination,setPagination] = useState(0);
-	const [fetchedPokemons,setFetchedPokemons] = useState([]);
+	// const [fetchedPokemons,setFetchedPokemons] = useState([]);
 	const [filteredList,setFilteredList] = useState(pokeList.slice(pagination,pagination+PAGE_SIZE));
 	const [searchTerm, setSearchTerm] = useState('');
 
 	const updateFetched = async (arr) => {
 		let output = [];
 		for (let i = 0; i < arr.length; i++) {
-			if(!fetchedPokemons.find(f=>f.name===arr[i].name)){
+			if(!fetched.find(f=>f.name===arr[i].name)){
 			const response = await fetch(arr[i].url);
 			const data = await response.json();
 			output.push(data);
 			}
 		}
-		setFetchedPokemons(f=>f.concat(output));
+		setFetched(f=>f.concat(output));
 	}
 
 	useEffect(async () => {
@@ -71,7 +71,7 @@ const Pokedex = ({pokeList,showBig}) => {
 				</div>}
 			</div>
 			<div className="pokedex-container">
-				{pagination!==null  && filteredList.map(p=>{return (<PokedexSmallCard key={p.name} showBig={showBig} pokemon={fetchedPokemons.find(f=>f.name===p.name)}/>)})}
+				{(pagination!==null && PAGE_SIZE!==0)  && filteredList.map(p=>{return (<PokedexSmallCard key={p.name} showBig={showBig} pokemon={fetched.find(f=>f.name===p.name)}/>)})}
 				{filteredList.length === 0 ? <div><img src="./src/images/Spr_5b2_025_m.png" alt="" /> <p>Sorry, nothing found =/</p></div> : null}
 			</div>
 		</div>

@@ -22,16 +22,19 @@ body {
   header > img {
 	  width:15em;
   }
-  /* nav {
-	grid-area: n;
-	background-color: green;
-	border: 2px dotted red;
-	display: flex;
-	width: auto;
-	height: 5em;
-	justify-content: space-evenly;
-	align-items: center;
-  } */
+  nav, footer, .app-container>header {
+	background: repeating-linear-gradient(
+		-45deg,
+		#4e4e4e,
+		#4e4e4e 20px,
+		#333333 20px,
+		#333333 30px,
+		#4e4e4e 30px,
+		#4e4e4e 60px,
+		#333333 60px,
+		#333333 90px
+	);
+  }
   nav {
 	grid-area: n;
 	background-color: #afafaf;
@@ -55,6 +58,9 @@ body {
   }
   nav img {
 	  width:10em;
+  }
+  nav a {
+	  color: aliceblue;
   }
   nav > a.active{
 	  filter: drop-shadow(0px 0px 1em #ffff2d);
@@ -110,4 +116,35 @@ body {
   }
   button:active {
 	  transform: scale(1);
+  }
+  @media screen and (max-width: 1000px) {
+	.app-container {
+	display: grid;
+	grid-template-areas:
+		"h h h"
+		"n n n"
+		"m m m"
+		"f f f";
+		grid-template-columns: auto 1fr 1fr;
+		grid-template-rows: auto auto 1fr auto;
+	}
+	nav {
+		grid-area: n;
+		/* background-color: #afafaf; */
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+		text-align: center;
+		width: auto;
+	}
+	nav > a > img {
+		display: none;
+	}
+	nav > a.active{
+		filter: drop-shadow(0px 0px 0.3em #ffff2a);
+		color: #ffff2a;
+	}
+	main {
+		height: 84.3vh;
+	}
   }
