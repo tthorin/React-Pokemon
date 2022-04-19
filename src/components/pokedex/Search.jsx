@@ -13,7 +13,7 @@ const Search = ({searchTerm,setSearchTerm}) => {
 			onBlur={()=>setIsFocused(false)}
 			 />
 			 {isFocused && searchTerm.length<3 ? <p>Search will begin filtering once you've entered at least 3 characters.</p> : null}
-			<button onClick={()=>setSearchTerm('')}>Clear search</button>
+			{searchTerm.length > 0 ?<button onClick={()=>setSearchTerm('')}>Clear search</button>:undefined}
         </div>
 
     )

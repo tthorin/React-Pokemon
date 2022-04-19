@@ -2,7 +2,7 @@ import {atom} from 'recoil';
 
 const pokeTeamState = atom({
 	  key: 'pokeTeamState',
-	  default: [],
+	  default: [null,null,null,null,null],
 })
 
 export default pokeTeamState;

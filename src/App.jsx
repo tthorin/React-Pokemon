@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,createRef } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -20,6 +20,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [bigCard, setBigCard] = useState(null);
   const [fetchedPokemons,setFetchedPokemons] = useState([]);
+  const [pokeTeamId,setPokeTeamId] = useState(0);
 
   useEffect(async () => {
     const response = await fetch(URL + FULL_LIST);
@@ -28,11 +29,13 @@ function App() {
 	setIsLoading(false);
   }, []);
 
+  const mainRef = createRef();
+
   if (isLoading) return <LoadSplash />;
   else {
     return (
       <Router>
-	    {bigCard && <BigCardDisplay poke={bigCard} show={setBigCard}/>}
+	    {bigCard && <BigCardDisplay teamId={pokeTeamId} setTeamId={setPokeTeamId} poke={bigCard} show={setBigCard}/>}
       <div className="app-container">
         <header>
 			<img src="./src/images/pokemon-logo-bw.png" alt="" />
@@ -45,11 +48,11 @@ function App() {
 			<NavLink to="/pokedex"><img src="./src/images/240px-479Rotom-Pokédex_2.png" alt="" />Pokédex</NavLink>
 			<NavLink to="/team"><img src="./src/images/Pokemon-PNG-Pic.png" alt="" />Your Team</NavLink>
         </nav>
-        <main>
+        <main ref={mainRef}>
           <Routes>
             <Route
               path="/pokedex"
-              element={<Pokedex showBig={setBigCard} pokeList={pokeList} fetched={fetchedPokemons} setFetched={setFetchedPokemons} />}
+              element={<Pokedex mainRef={mainRef} showBig={setBigCard} pokeList={pokeList} fetched={fetchedPokemons} setFetched={setFetchedPokemons} />}
             />
             <Route path="/team" element={<TeamCarousel />} />
 			<Route path="/" element={<Home/>}/>

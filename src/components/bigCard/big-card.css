@@ -7,7 +7,7 @@
 	overflow-y: hidden;
 	z-index: 1;
 	display: flex;
-	flex-direction: column;
+	/* flex-direction: column; */
 	justify-content: center;
 	align-items: center;
 }
@@ -28,7 +28,8 @@
 }
 .big-card-content{
 	display: grid;
-	grid-template-columns: 4em 5em 5em 5em 5em 4em;
+	/* grid-template-columns: 4em 5em 5em 5em 5em 4em; */
+	grid-template-columns: repeat(6,5vw);
 	min-height: 5em;
 	background-color: aliceblue;
 	grid-template-areas: 
@@ -54,6 +55,7 @@
 }
 .poke-name{
 	grid-area: name;
+	margin:0;
 }
 .poke-type{
 	grid-area: type;
@@ -64,7 +66,9 @@
 }
 .poke-art{
 	grid-area: img;
-	width: 100%;
+	max-width: 35vh;
+	justify-self: center;
+	/* align-self: center; */
 	/* border: 1px solid black; */
 }
 .poke-species{
@@ -73,14 +77,17 @@
 .poke-ability0{
 	grid-area: ab0;
 	display:flex;
+	align-items: center;
 }
 .poke-ability1{
 	grid-area: ab1;
 	display:flex;
+	align-items: center;
 }
 .poke-ability2{
 	grid-area: ab2;
 	display:flex;
+	align-items: center;
 }
 .poke-ab{
 	flex-grow: 1;
@@ -88,7 +95,10 @@
 }
 .poke-ab-desc{
 	flex-grow: 2;
+	margin: 0em;
 }
+
+
 .big-card-empty-slot{
 	display: flex;
 	flex-direction: column;

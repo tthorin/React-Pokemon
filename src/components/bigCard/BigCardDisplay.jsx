@@ -11,12 +11,21 @@ import { faSquarePlus } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
 
 
-const BigCardDisplay = ({show,poke}) => {
+const BigCardDisplay = ({teamId,setTeamId,show,poke}) => {
 	const [bigCard,setBigCard] = useState(null);
 	const [bigCards,setBigCards] = useRecoilState(bigCardData);
 	const [pokeTeam,setPokeTeam] = useRecoilState(pokeTeamState);
 	
 
+	const countTeamMembers = () => {
+		let count = 0;
+		console.log(pokeTeam)
+		pokeTeam.forEach(p => {
+			if(p !== null) count++;
+		})
+		return count;
+	}
+	
 	useEffect(async ()=>{
 		console.log("bigCards: ",bigCards,"poke: ",poke);
 		if (bigCards[0]!==null && bigCards.find(f=>f.name.toLowerCase()===poke.name)) setBigCard(bigCards.find(f=>f.name.toLowerCase()===poke.name));
@@ -28,14 +37,19 @@ const BigCardDisplay = ({show,poke}) => {
 	},[])
 
 	const addToTeam = () => {
-		if (pokeTeam.length<5) setPokeTeam([...pokeTeam,{nickName:bigCard.name, pokemon:bigCard}]);
-		console.log("from bigCard,addtotteam",pokeTeam);
+		// if (!pokeTeam.find(f=>f===null)===undefined) setPokeTeam([...pokeTeam,{id:{teamId}, nickName:bigCard.name, pokemon:bigCard}]);
+		const idx = pokeTeam.findIndex(f=>f===null);
+		let newArr = [...pokeTeam];
+		newArr[idx] = {id:teamId, nickName:bigCard.name, pokemon:bigCard};
+		// setPokeTeam([...pokeTeam,{id:{teamId}, nickName:bigCard.name, pokemon:bigCard}]);
+		setPokeTeam(newArr);
+		setTeamId(teamId+1);
 	}
 
 	return (
 		<div className="big-card-backdrop" onClick={()=>show(null)}>
-			<p>Team members: {pokeTeam.length} / 5</p>
-			<button disabled={pokeTeam.length>4} onClick={(e)=>{e.stopPropagation();addToTeam()}}>{pokeTeam.length>4?"Team is full!":<div><FontAwesomeIcon icon={faSquarePlus}/><span> Add to team</span></div>}</button>
+			<p>Team members: {countTeamMembers()} / 5</p>
+			<button disabled={pokeTeam.find(f=>f===null)===undefined} onClick={(e)=>{e.stopPropagation();addToTeam()}}>{pokeTeam.find(f=>f===null)===undefined?"Team is full!":<div><FontAwesomeIcon icon={faSquarePlus}/><span> Add to team</span></div>}</button>
 			{bigCard ===null ?
 			<BallLoadSpinner/>:<BigCard bigCard={bigCard}/>}
 			<button><Link to="/team">View Team</Link></button>

@@ -33,25 +33,25 @@ const TeamCarousel = ({ team }) => {
 	},[name])
 
 	const fillCarousel = (x) => {
-		console.log("im in fillCarousel")
 		let needed = TEAM_SIZE - pokeTeam.length;
 		let output = [];
 		for(let i = 0; i < needed; i++){
 			output.push(
-			<div className={"team-card card"+(pokeTeam.length+i+1)}>
+			<div key={"empty"+i} className={"team-card card"+(pokeTeam.length+i+1)}>
 				<header><h1>Empty</h1></header>
-				<EmptySlotCard key={"empty"+i} slotNumber={pokeTeam.length+1+i}/>
+				<EmptySlotCard slotNumber={pokeTeam.length+1+i}/>
 			</div>
 			)
 		}
 		return output
 	}
-	const removeFromTeam = (idx) => {
-		setPokeTeam(pt => pt.filter((p,i)=> i !== idx ));
+	const removeFromTeam = (id) => {
+		setPokeTeam(pt=> pt.map(p => p === null || p.id===id?null:p));
 	}
 
 	return(
 		<div className="carousel-container">
+		{console.log(pokeTeam)}
 			<button onClick={() => {setSpin(spin+SPIN_AMOUNT);cancelEdit()}}>Previous</button>
 			<div className="carousel-scene">
 				{editingNickName !== -1 ? (
@@ -63,14 +63,19 @@ const TeamCarousel = ({ team }) => {
 					:<p>hint: click on the name to edit it</p>}
 				<div className="carousel show-card" style={{transform: `translateZ(-500px) rotateY(${spin}deg)`}}>
 					{pokeTeam.map((p,i) => (
-						<div className={"team-card card"+(i+1)}>
-						<header onClick={()=>{setName(pokeTeam[i].nickName);setEditingNickName(i)}}>
-						{editingNickName === i ?
-							 <input type="text" value={name} onChange={(e)=>{setName(e.target.value.trim())}} />
-						  : <h1>{pokeTeam[i].nickName}</h1>}
-						</header>
-						<BigCard key={p.pokemon.id} bigCard={p.pokemon} />
-						<button onClick={()=>removeFromTeam(i)}><FontAwesomeIcon icon={faSquareMinus} /> Remove from team</button>
+						p===null?
+						<div key={"empty"+i} className={"team-card card"+(pokeTeam.length+i+1)}>
+							<header><h1>Empty</h1></header>
+							<EmptySlotCard slotNumber={i+1}/>
+						</div>
+						:<div key={p.id} className={"team-card card"+(i+1)}>
+							<header onClick={()=>{setName(pokeTeam[i].nickName);setEditingNickName(i)}}>
+							{editingNickName === i ?
+								<input type="text" value={name} onChange={(e)=>{setName(e.target.value.trim())}} />
+							:<h1>{pokeTeam[i].nickName}</h1>}
+							</header>
+							<BigCard bigCard={p.pokemon} />
+							<button onClick={()=>removeFromTeam(p.id)}><FontAwesomeIcon icon={faSquareMinus} /> Remove from team</button>
 						</div>
 						))}
 					{fillCarousel()}

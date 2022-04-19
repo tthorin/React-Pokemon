@@ -1,6 +1,9 @@
 body {
 	font-family: 'Maven Pro', sans-serif;
+	margin: 0em;
+	padding: 0em;
 }
+
 .pika {
 	width: 20em;
 }
@@ -17,10 +20,11 @@ body {
 	grid-area: h;
 	display: flex;
 	width: auto;
-	/* height: 7em; */
+	height: 10vh;
   }
   header > img {
 	  width:15em;
+	  z-index: 1;
   }
   nav, footer, .app-container>header {
 	background: repeating-linear-gradient(
@@ -40,9 +44,9 @@ body {
 	background-color: #afafaf;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
+	/* justify-content: space-evenly; */
 	text-align: center;
-	width: 10em;
+	width: 8vw;
 	padding: 1em 2em;
 	background: repeating-linear-gradient(
 			-45deg,
@@ -57,10 +61,11 @@ body {
 		);
   }
   nav img {
-	  width:10em;
+	  width:100%;
   }
   nav a {
 	  color: aliceblue;
+	  margin: 2em 0.3em;
   }
   nav > a.active{
 	  filter: drop-shadow(0px 0px 1em #ffff2d);
@@ -80,14 +85,15 @@ body {
 			#ececec 90px
 		);
 	width: auto;
-	height: calc(100vh - 9.6em);
+	min-height: 86vh;
   }
   footer {
 	grid-area: f;
 	background-color: blue;
 	display: flex;
 	width: auto;
-	height: 4em;
+	/* height: 4em; */
+	/* height: 4vh; */
   }
   button {
 	  font-family: 'Maven Pro', sans-serif;
@@ -117,7 +123,7 @@ body {
   button:active {
 	  transform: scale(1);
   }
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1000px){
 	.app-container {
 	display: grid;
 	grid-template-areas:
@@ -126,16 +132,22 @@ body {
 		"m m m"
 		"f f f";
 		grid-template-columns: auto 1fr 1fr;
-		grid-template-rows: auto auto 1fr auto;
+		grid-template-rows: 5vh 5vh 1fr 5vh;
 	}
 	nav {
 		grid-area: n;
 		/* background-color: #afafaf; */
+		margin: 0;
+		padding: 0;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-evenly;
 		text-align: center;
 		width: auto;
+	}
+	nav > a {
+		margin: 0em;
+		padding: 0em;
 	}
 	nav > a > img {
 		display: none;
@@ -145,6 +157,50 @@ body {
 		color: #ffff2a;
 	}
 	main {
-		height: 84.3vh;
+		min-height: 85vh;
 	}
   }
+  @media screen and (max-height: 1000px){
+	.app-container {
+	display: grid;
+	grid-template-areas:
+		"n m m"
+		"n m m"
+		"n m m"
+		"n m m";
+		grid-template-columns: auto 1fr 1fr;
+		grid-template-rows: 5vh 5vh 1fr 5vh;
+	}
+	.app-container>header {
+		display: none;
+		transform: rotate(-90deg);
+		width: auto;
+	}
+	.carousel-container {
+		margin: 0;
+		padding: 0;
+		height:0;
+	}
+	main{
+		min-height: 100vh;
+	}
+	footer {
+		display: none;
+	}
+	nav img{
+		display: none;
+	}
+	nav a{
+		transform: rotate(-90deg);
+		margin: 5em 0.2em;
+		width: max-content;
+		height: fit-content;
+	}
+	nav {
+		width: 4vw;
+		padding:0.5em;
+		justify-content: center;
+		align-items: center;
+	}
+	
+}

@@ -8,11 +8,13 @@
 }
 
 .search > input,button,label {
-	font-size: 1.3em;
+	font-size: 1.1em;
 	margin: 0.3em 1em;
 }
 .search> button {
 	margin-right: 1.5em;
+	position: absolute;
+	right: -8em;
 }
 
 .search>input{
@@ -26,8 +28,9 @@
 	border-color: #56a6eb;
 }
 .search > label{
-	position: absolute;
-	right: 24rem;
+	position: relative;
+	left: 5.5em;
+	/* right: 24rem; */
 	-webkit-user-select: none;
 	user-select: none;
 	pointer-events: none;
@@ -35,14 +38,15 @@
 .search > p {
 	position:absolute;
 	top: 2.3rem;
-	right: 0rem;
+	right: -6rem;
 	color: #484848;
 }
 .centered{
-	transform: translate(calc(-50% + 15em),10%);
+	transform: translate(calc(-50% + 10em),10%);
 }
 .centered>label{
 	font-size: 0.7em;
-	bottom: 2.1rem;
-	right: 26.7rem;
+	bottom: 1rem;
+	/* right: 22rem; */
+	left: 7em;
 }

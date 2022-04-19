@@ -4,12 +4,12 @@ import PokedexSmallCard from "./PokedexSmallCard";
 import Search from "./Search";
 import calculatePageSize from './calculatePageSize';
 
-const Pokedex = ({fetched,setFetched,pokeList,showBig}) => {
+const Pokedex = ({mainRef, fetched,setFetched,pokeList,showBig}) => {
 	// const PAGE_SIZE = 14;
-	let  PAGE_SIZE = calculatePageSize();
+	let  PAGE_SIZE = 8;
 	const [pagination,setPagination] = useState(0);
 	// const [fetchedPokemons,setFetchedPokemons] = useState([]);
-	const [filteredList,setFilteredList] = useState(pokeList.slice(pagination,pagination+PAGE_SIZE));
+	const [filteredList,setFilteredList] = useState(pokeList.slice(pagination,pagination+8));
 	const [searchTerm, setSearchTerm] = useState('');
 
 	const updateFetched = async (arr) => {
@@ -25,10 +25,13 @@ const Pokedex = ({fetched,setFetched,pokeList,showBig}) => {
 	}
 
 	useEffect(async () => {
+		PAGE_SIZE = calculatePageSize(mainRef.current)
+		setFilteredList(pokeList.slice(pagination,pagination+PAGE_SIZE));
 		updateFetched(filteredList);
 	},[]);
 
 	const pagNext = () => {
+		PAGE_SIZE = calculatePageSize(mainRef.current);
 		const newPag = pagination + PAGE_SIZE;
 		const newArr= pokeList.slice(newPag,newPag+PAGE_SIZE);
 		setFilteredList(newArr);
@@ -36,6 +39,7 @@ const Pokedex = ({fetched,setFetched,pokeList,showBig}) => {
 		updateFetched(newArr);
 	}
 	const pagPrev = () => {
+		PAGE_SIZE = calculatePageSize(mainRef.current);
 		const newPag = (pagination - PAGE_SIZE) < 0 ? 0 : pagination - PAGE_SIZE;
 		const newArr= pokeList.slice(newPag,newPag+PAGE_SIZE);
 		setFilteredList(newArr);
@@ -44,7 +48,7 @@ const Pokedex = ({fetched,setFetched,pokeList,showBig}) => {
 	}
 	useEffect(()=>{
 		if(searchTerm.length > 2){
-			const newArr = pokeList.filter(p=>p.name.includes(searchTerm.trim().toLowerCase()))
+			const newArr = pokeList.filter(p=>p.name.includes(searchTerm.trim().toLowerCase()));
 			setFilteredList(newArr);
 			updateFetched(newArr);
 		} else {
@@ -59,7 +63,7 @@ const Pokedex = ({fetched,setFetched,pokeList,showBig}) => {
 	
 	return(
 		<div className="pokedex">
-		{console.log(calculatePageSize())}
+		{/* {console.log(calculatePageSize())} */}
 			<Search pokeList={pokeList} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
 			<div className="pokedex-info-area">
 			{searchTerm.length > 2 ?
@@ -71,7 +75,7 @@ const Pokedex = ({fetched,setFetched,pokeList,showBig}) => {
 				</div>}
 			</div>
 			<div className="pokedex-container">
-				{(pagination!==null && PAGE_SIZE!==0)  && filteredList.map(p=>{return (<PokedexSmallCard key={p.name} showBig={showBig} pokemon={fetched.find(f=>f.name===p.name)}/>)})}
+				{pagination !==null  && filteredList.map(p=>{return (<PokedexSmallCard key={p.name} showBig={showBig} pokemon={fetched.find(f=>f.name===p.name)}/>)})}
 				{filteredList.length === 0 ? <div><img src="./src/images/Spr_5b2_025_m.png" alt="" /> <p>Sorry, nothing found =/</p></div> : null}
 			</div>
 		</div>

@@ -5,7 +5,6 @@ const EmptySlotCard = ({slotNumber}) => {
 	return (
 		<section className="big-card">
 			<div className="big-card-empty-slot">
-				{console.log("im in empty slot card",slotNumber)}
 				<h1>Team Slot {slotNumber}</h1>
 				<img src="./src/images/Spr_5b2_025_m.png" alt="" />
 				<p>Visit the <Link to="/pokedex">Pokédex</Link> to add a Pokémon to your dream team!</p>
