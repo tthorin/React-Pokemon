@@ -5,18 +5,15 @@
 	position: fixed;
 	top: 0;
 	overflow-y: hidden;
-	z-index: 1;
+	z-index: 2;
 	display: flex;
-	/* flex-direction: column; */
 	justify-content: center;
 	align-items: center;
 }
 .big-card-backdrop > button {
-	z-index: 2;
+	z-index: 3;
 }
-.big-card-backdrop > p {
-	color: aliceblue;
-}
+
 .big-card{
 	border: 3px solid black;
 	border-radius: 1em;
@@ -29,7 +26,7 @@
 .big-card-content{
 	display: grid;
 	/* grid-template-columns: 4em 5em 5em 5em 5em 4em; */
-	grid-template-columns: repeat(6,5vw);
+	grid-template-columns: repeat(6, 4em);
 	min-height: 5em;
 	background-color: aliceblue;
 	grid-template-areas: 
@@ -66,10 +63,10 @@
 }
 .poke-art{
 	grid-area: img;
-	max-width: 35vh;
+	max-width: 30vh;
 	justify-self: center;
 	/* align-self: center; */
-	/* border: 1px solid black; */
+	border: 1px solid black;
 }
 .poke-species{
 	grid-area: species;
@@ -106,5 +103,12 @@
 	align-items: center;
 	height: 100%;
 	width: 20em;
-
+}
+.big-card-info-left{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	color: aliceblue;
 }

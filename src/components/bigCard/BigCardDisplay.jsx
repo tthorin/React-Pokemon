@@ -48,8 +48,15 @@ const BigCardDisplay = ({teamId,setTeamId,show,poke}) => {
 
 	return (
 		<div className="big-card-backdrop" onClick={()=>show(null)}>
+		<div className="big-card-info-left">
 			<p>Team members: {countTeamMembers()} / 5</p>
-			<button disabled={pokeTeam.find(f=>f===null)===undefined} onClick={(e)=>{e.stopPropagation();addToTeam()}}>{pokeTeam.find(f=>f===null)===undefined?"Team is full!":<div><FontAwesomeIcon icon={faSquarePlus}/><span> Add to team</span></div>}</button>
+			<button disabled={pokeTeam.find(f=>f===null)===undefined}
+				onClick={(e)=>{e.stopPropagation();addToTeam()}}>
+				{pokeTeam.find(f=>f===null)===undefined?
+				"Team is full!"
+				:<div><FontAwesomeIcon icon={faSquarePlus}/><span> Add to team</span></div>}
+			</button>
+		</div>
 			{bigCard ===null ?
 			<BallLoadSpinner/>:<BigCard bigCard={bigCard}/>}
 			<button><Link to="/team">View Team</Link></button>

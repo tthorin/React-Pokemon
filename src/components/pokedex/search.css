@@ -5,10 +5,12 @@
 	align-items: center;
 	justify-content: end;
 	transition: all 0.3s ease-in-out;
+	padding-top: 0.9em;
+	z-index: 1;
 }
 
 .search > input,button,label {
-	font-size: 1.1em;
+	font-size: 1em;
 	margin: 0.3em 1em;
 }
 .search> button {
@@ -30,23 +32,49 @@
 .search > label{
 	position: relative;
 	left: 5.5em;
-	/* right: 24rem; */
 	-webkit-user-select: none;
 	user-select: none;
 	pointer-events: none;
+	overflow: hidden;
 }
 .search > p {
 	position:absolute;
-	top: 2.3rem;
-	right: -6rem;
+	/* top: 2.3rem; */
+	bottom:1.7rem;
+	right: -11rem;
 	color: #484848;
 }
 .centered{
-	transform: translate(calc(-50% + 10em),10%);
+	transform: translate(calc(-50% + 7em),10%);
 }
 .centered>label{
 	font-size: 0.7em;
-	bottom: 1rem;
-	/* right: 22rem; */
+	bottom: 0.8rem;
 	left: 7em;
+}
+.pokedex-search-onboarding{
+	position: absolute;
+	background-color:blue;
+	color: yellow;
+	padding: 2em;
+	right: 3em;
+	margin-left: 3em;
+	top:  5em;
+	border: 5px double yellow;
+	border-radius: 1em;
+}
+.pokedex-search-onboarding::after{
+	content: "";
+	display: inline-block;	
+	height:2em;
+	width: 2em;
+	background-color: blue;
+	border: 5px double yellow;
+	border-right: none;
+	border-bottom: none;
+	transform:rotate(45deg);
+	position: absolute;
+	top:-1.3em;
+	/* bottom: 11.4em; */
+	right:8em;
 }

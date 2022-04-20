@@ -1,18 +1,18 @@
-const calculatePageSize = (ref) => {
-	if (!document.querySelector('main')) return 0;
-	// const container = document.querySelector('.pokedex-container')?
-	// 					document.querySelector('.pokedex-container')
-	// 					: document.querySelector('main');
-	// const container = document.querySelector('main')
-	const container = ref
-	const height = container.clientHeight;
-	const width = container.clientWidth;
-	const offHeight = container.offsetHeight;
-	const scrollHeight = container.scrollHeight;
-	console.log(container,height, offHeight,scrollHeight);
-	const cols = Math.floor(width / 248);
-	const rows = Math.floor(height / 222);
-	console.log(`${cols} x ${rows}`);
+const calculatePageSize = (ref,ref2) => {
+	const html = document.querySelector('html');
+	const height = html.clientHeight;
+	const width = html.clientWidth;
+	const smallCardWidth = 270;
+	const smallCardHeight = 207;
+
+	const cols = (width<1600&&height>1000)||height>1000?
+	 Math.floor(width / smallCardWidth)
+	:(Math.floor(width / (smallCardWidth-30)));
+
+	const rows = height<1000?
+	 Math.floor(height / smallCardHeight)
+	:(Math.floor(height / (smallCardHeight+30)));
+	
 	return cols * rows;
 }
 

@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect,createRef } from 'react';
 import "./pokedex.css"
 import PokedexSmallCard from "./PokedexSmallCard";
 import Search from "./Search";
 import calculatePageSize from './calculatePageSize';
 
-const Pokedex = ({mainRef, fetched,setFetched,pokeList,showBig}) => {
+const Pokedex = ({pokedexOnboarding,mainRef, fetched,setFetched,pokeList,showBig}) => {
 	// const PAGE_SIZE = 14;
-	let  PAGE_SIZE = 8;
+	let PAGE_SIZE = 8;
 	const [pagination,setPagination] = useState(0);
 	// const [fetchedPokemons,setFetchedPokemons] = useState([]);
 	const [filteredList,setFilteredList] = useState(pokeList.slice(pagination,pagination+8));
@@ -25,13 +25,13 @@ const Pokedex = ({mainRef, fetched,setFetched,pokeList,showBig}) => {
 	}
 
 	useEffect(async () => {
-		PAGE_SIZE = calculatePageSize(mainRef.current)
+		PAGE_SIZE = calculatePageSize()
 		setFilteredList(pokeList.slice(pagination,pagination+PAGE_SIZE));
 		updateFetched(filteredList);
 	},[]);
 
 	const pagNext = () => {
-		PAGE_SIZE = calculatePageSize(mainRef.current);
+		PAGE_SIZE = calculatePageSize();
 		const newPag = pagination + PAGE_SIZE;
 		const newArr= pokeList.slice(newPag,newPag+PAGE_SIZE);
 		setFilteredList(newArr);
@@ -39,7 +39,7 @@ const Pokedex = ({mainRef, fetched,setFetched,pokeList,showBig}) => {
 		updateFetched(newArr);
 	}
 	const pagPrev = () => {
-		PAGE_SIZE = calculatePageSize(mainRef.current);
+		PAGE_SIZE = calculatePageSize();
 		const newPag = (pagination - PAGE_SIZE) < 0 ? 0 : pagination - PAGE_SIZE;
 		const newArr= pokeList.slice(newPag,newPag+PAGE_SIZE);
 		setFilteredList(newArr);
@@ -47,8 +47,12 @@ const Pokedex = ({mainRef, fetched,setFetched,pokeList,showBig}) => {
 		updateFetched(newArr);
 	}
 	useEffect(()=>{
-		if(searchTerm.length > 2){
-			const newArr = pokeList.filter(p=>p.name.includes(searchTerm.trim().toLowerCase()));
+		if(searchTerm.length > 2 || searchTerm.substring(0,1)==="#"){
+			let newArr=null;
+			let reg = new RegExp(`\/${searchTerm.substring(1)}\/$`);
+			searchTerm.substring(0,1)==="#"?
+			newArr=pokeList.filter(p=>reg.test(p.url))
+			:newArr = pokeList.filter(p=>p.name.includes(searchTerm.trim().toLowerCase()));
 			setFilteredList(newArr);
 			updateFetched(newArr);
 		} else {
@@ -59,24 +63,23 @@ const Pokedex = ({mainRef, fetched,setFetched,pokeList,showBig}) => {
 	},[searchTerm]);
 
 
-	
+	const pdexContRef = createRef();
 	
 	return(
 		<div className="pokedex">
-		{/* {console.log(calculatePageSize())} */}
-			<Search pokeList={pokeList} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+			<Search pokedexOnboarding={pokedexOnboarding} pokeList={pokeList} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
 			<div className="pokedex-info-area">
-			{searchTerm.length > 2 ?
+			{searchTerm.length > 2 || searchTerm.substring(0,1)==="#"?
 				<p>Search matched {filteredList.length} Pokémons</p>
 				:<div>
 					<button disabled={pagination===0} onClick={pagPrev}>Prev</button>
 					<p>showing {pagination+1} - {pagination+PAGE_SIZE} out of {pokeList.length} Pokémons</p>
-					<button disabled={pagination+PAGE_SIZE>pokeList.length} onClick={pagNext}>Next</button>
+					<button disabled={pagination+calculatePageSize()>pokeList.length} onClick={pagNext}>Next</button>
 				</div>}
 			</div>
-			<div className="pokedex-container">
+			<div className="pokedex-container" ref={pdexContRef}>
 				{pagination !==null  && filteredList.map(p=>{return (<PokedexSmallCard key={p.name} showBig={showBig} pokemon={fetched.find(f=>f.name===p.name)}/>)})}
-				{filteredList.length === 0 ? <div><img src="./src/images/Spr_5b2_025_m.png" alt="" /> <p>Sorry, nothing found =/</p></div> : null}
+				{filteredList.length === 0 ? <div className='nothing-found'><img src="./src/images/Spr_5b2_025_m.png" alt="" /> <p>Sorry, nothing found :(</p></div> : null}
 			</div>
 		</div>
 	)
