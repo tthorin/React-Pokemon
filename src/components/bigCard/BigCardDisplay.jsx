@@ -19,7 +19,6 @@ const BigCardDisplay = ({teamId,setTeamId,show,poke}) => {
 
 	const countTeamMembers = () => {
 		let count = 0;
-		console.log(pokeTeam)
 		pokeTeam.forEach(p => {
 			if(p !== null) count++;
 		})
@@ -27,7 +26,6 @@ const BigCardDisplay = ({teamId,setTeamId,show,poke}) => {
 	}
 	
 	useEffect(async ()=>{
-		console.log("bigCards: ",bigCards,"poke: ",poke);
 		if (bigCards[0]!==null && bigCards.find(f=>f.name.toLowerCase()===poke.name)) setBigCard(bigCards.find(f=>f.name.toLowerCase()===poke.name));
 		else {
 			const card = await bigCardBuilder(poke)

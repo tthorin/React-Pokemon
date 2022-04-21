@@ -10,11 +10,11 @@
 }
 .carousel-container > button {
 	width: fit-content;
-	justify-self: end;
+	justify-self: center;
 }
 button.move {
 	grid-column: 3/4;
-	justify-self: start;
+	justify-self: center;
 }
 .carousel-scene {
 	text-align: center;
@@ -98,7 +98,7 @@ button.move {
 	width: max-content;
 	left: -2em;
 	/* top: 3.5em; */
-	bottom: 5em;
+	bottom: 3em;
 	text-shadow: 0 0 0.5em rgb(218, 9, 9);
 }
 .carousel-btn-cta{
