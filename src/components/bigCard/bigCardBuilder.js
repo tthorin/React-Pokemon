@@ -2,7 +2,7 @@ import { capitalize } from "../capitalize"
 
 const getTypes = (types) => {
 	const output = types.length > 1 ?
-	 	"types: " + types.map(type => type.type.name).join("/") 
+	 	"types: " + types.map(type => type.type.name).join(" / ") 
 		:"type: " + types[0].type.name
 	return output
 }

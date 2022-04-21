@@ -6,7 +6,6 @@ const LoadSplash = () => {
 			<img src="./src/images/Spr_5b2_025_m.png" alt="" />
 			<h3>Please wait...</h3>
 		</div>
-
 	)
 }
 

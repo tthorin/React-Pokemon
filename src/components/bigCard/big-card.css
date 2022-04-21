@@ -10,36 +10,40 @@
 	justify-content: center;
 	align-items: center;
 }
-.big-card-backdrop > button {
-	z-index: 3;
+.big-card-backdrop  button {
+	z-index: 3;;
+}
+.big-card-backdrop>button>a {
+	color: aliceblue;
+	text-decoration: none;
 }
 
 .big-card{
 	border: 3px solid black;
 	border-radius: 1em;
-	width: min-content;
+	/* width: min-content; */
 	padding: 1em;
 	background-color: aliceblue;
 	box-shadow: 5px 5px 5px black;
+	display: flex;
 
 }
 .big-card-content{
 	display: grid;
-	/* grid-template-columns: 4em 5em 5em 5em 5em 4em; */
-	grid-template-columns: repeat(6, 4em);
 	min-height: 5em;
 	background-color: aliceblue;
 	grid-template-areas: 
-    "id id . . . ."
-    "name name hp hp type type"
-    ". img img img img ."
-    ". img img img img ."
-	"species species species species species species"
-    "ab0 ab0 ab0 ab0 ab0 ab0"
-	"ab1 ab1 ab1 ab1 ab1 ab1"
-	"ab2 ab2 ab2 ab2 ab2 ab2";
+		". name id ."
+		". hp type ."
+		". img img ."
+		". spc spc ."
+		". ab0 ab0 ."
+		". ab1 ab1 ."
+		". ab2 ab2 .";
+	grid-template-columns: 1rem auto auto 1rem;
 	justify-content: center;
 	align-items: center;
+	width: min-content;
 }
 .big-card-content > p {
 	margin: 0.3em 1em;
@@ -49,6 +53,7 @@
 	font-weight: bold;
 	color: #ff0000;
 	margin: 0;
+	justify-self: end;
 }
 .poke-name{
 	grid-area: name;
@@ -63,36 +68,30 @@
 }
 .poke-art{
 	grid-area: img;
-	max-width: 30vh;
+	max-width: 35vmin;
+	min-width: 200px;
 	justify-self: center;
-	/* align-self: center; */
 	border: 1px solid black;
 }
 .poke-species{
-	grid-area: species;
+	grid-area: spc;
 }
-.poke-ability0{
-	grid-area: ab0;
+
+.poke-ability{
 	display:flex;
 	align-items: center;
 }
-.poke-ability1{
-	grid-area: ab1;
-	display:flex;
-	align-items: center;
-}
-.poke-ability2{
-	grid-area: ab2;
-	display:flex;
-	align-items: center;
-}
+.p-ab0{grid-area: ab0;background-color: #dce4eb;}
+.p-ab1{grid-area: ab1;}
+.p-ab2{grid-area: ab2;background-color: #dce4eb;}
+
 .poke-ab{
 	flex-grow: 1;
 	padding: 0.2em 0.5em;
 }
 .poke-ab-desc{
 	flex-grow: 2;
-	margin: 0em;
+	margin: 0.2em 0em;
 }
 
 
@@ -109,6 +108,5 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 100%;
 	color: aliceblue;
 }

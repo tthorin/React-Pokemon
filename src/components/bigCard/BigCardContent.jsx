@@ -9,7 +9,7 @@ const BigCardContent = ({bc}) => {
 			<p className="poke-species">{bc.evolvesFrom===null?"":bc.evolvesFrom}</p>
 			{bc.abilities.map((ability,idx)=>{
 				return (
-					<div key={ability.name} className={"poke-ability"+idx}>
+					<div key={ability.name} className={"poke-ability p-ab"+idx}>
 						<p className="poke-ab">{ability.name}: </p>
 						<p className="poke-ab-desc">{ability.desc}</p>
 					</div>

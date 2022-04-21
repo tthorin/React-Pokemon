@@ -11,3 +11,18 @@
 	width: 30em;
 	filter: drop-shadow(0 0 0.5em white);
 }
+.home-headline {
+	font-size: 4em;
+	color: #d7da1c;
+	margin: 0.5em 0;
+	animation: neon 1s ease-in-out infinite alternate;
+}
+@keyframes neon {
+	from {
+		text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #091faa, 0 0 40px #091faa, 0 0 50px #091faa, 0 0 60px #091faa;
+	  }
+	  to {
+		text-shadow: 0 0 20px #fff, 0 0 30px #102de6, 0 0 40px #102de6, 0 0 50px #102de6, 0 0 60px #102de6, 0 0 70px #102de6;
+	  }
+
+}
