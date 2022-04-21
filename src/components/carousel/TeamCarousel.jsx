@@ -8,9 +8,9 @@ import CarouselButtonBar from "./CarouselButtonBar";
 import CarouselCards from "./CarouselCards";
 
 const TeamCarousel = ({ team }) => {
-	const [pokeTeam, setPokeTeam] = useRecoilState(pokeTeamState);
 	const TEAM_SIZE = 5;
 	const SPIN_AMOUNT = 360 / TEAM_SIZE;
+	const [pokeTeam, setPokeTeam] = useRecoilState(pokeTeamState);
 	const [spin, setSpin] = useState(0);
 	const [editingNickName,setEditingNickName] = useState(-1);
 	const [name,setName] =useState("");
@@ -21,7 +21,8 @@ const TeamCarousel = ({ team }) => {
 		setPokeTeam:setPokeTeam,
 		editingNickName:editingNickName,
 		setEditingNickName:setEditingNickName,
-		name:name,setName:setName,
+		name:name,
+		setName:setName,
 		validName:validName,
 		setValidName:setValidName
 	};

@@ -1,10 +1,11 @@
 import BigCard from "../bigCard/BigCard";
 import EmptySlotCard from "./EmptySlotCard";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquareMinus } from "@fortawesome/free-regular-svg-icons";
 import {removeFromTeam} from "./TeamCarouselUtils";
+import { useEffect } from "react/cjs/react.production.min";
 
-const CarouselCards = ({carouselState:{pokeTeam,setName,setEditingNickName,editingNickName,name}})=> {
+const CarouselCards = ({carouselState:{pokeTeam,setPokeTeam,setName,setEditingNickName,editingNickName,name}})=> {
     return pokeTeam.map((p,i) => (
         p===null?
         <div key={"empty"+i} className={"team-card card"+(pokeTeam.length+i+1)}>

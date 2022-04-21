@@ -52,7 +52,6 @@ const bigCardBuilder = async (pokemon) => {
 	output.id = pokemon.id
 	output.name = capitalize(pokemon.name)
 	output.hp = pokemon.stats.find(f=>f.stat.name==="hp").base_stat
-	// output.img = pokemon.sprites.other["official-artwork"].front_default
 	output.img = getArtwork(pokemon.sprites);
 	output.types = getTypes(pokemon.types)
 	output.evolvesFrom = await getEvolution(pokemon.species.url)
