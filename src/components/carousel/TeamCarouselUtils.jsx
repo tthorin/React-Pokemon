@@ -1,6 +1,6 @@
 const assignName = (idx,state) => {
   state.setPokeTeam((pt) =>
-    pt.map((p, i) => (i === idx ? { ...p, nickName: state.name } : p))
+    pt.map((p, i) => (i === idx ? { ...p, nickName: state.name.trim() } : p))
   );
   state.setName("");
   state.setEditingNickName(-1);

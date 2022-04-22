@@ -3,7 +3,6 @@ import EmptySlotCard from "./EmptySlotCard";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquareMinus } from "@fortawesome/free-regular-svg-icons";
 import {removeFromTeam} from "./TeamCarouselUtils";
-import { useEffect } from "react/cjs/react.production.min";
 
 const CarouselCards = ({carouselState:{pokeTeam,setPokeTeam,setName,setEditingNickName,editingNickName,name}})=> {
     return pokeTeam.map((p,i) => (
@@ -15,7 +14,7 @@ const CarouselCards = ({carouselState:{pokeTeam,setPokeTeam,setName,setEditingNi
         :<div key={p.id} className={"team-card card"+(i+1)}>
             <header onClick={()=>{setName(pokeTeam[i].nickName);setEditingNickName(i)}}>
             {editingNickName === i ?
-                <input type="text" value={name} onChange={(e)=>{setName(e.target.value.trim())}} />
+                <input type="text" value={name} onChange={(e)=>{setName(e.target.value)}} />
             :<h1>{pokeTeam[i].nickName}</h1>}
             </header>
             <BigCard bigCard={p.pokemon} />
