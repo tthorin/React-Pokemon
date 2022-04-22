@@ -15,7 +15,6 @@ const updateFetched = async (arr,{fetched,setFetched}) => {
 const pagNext = (state,amount) => {
     let {pagination,pokeList,setFilteredList,setPagination} = state;
     const PAGE_SIZE = calculatePageSize();
-    // const newPag = pagination + PAGE_SIZE;
 	let newPag = 0;
 	switch (amount) {
 		case "last": newPag = pokeList.length-PAGE_SIZE;break;
@@ -33,7 +32,6 @@ const pagNext = (state,amount) => {
 const pagPrev = (state,amount) => {
     let {pagination,pokeList,setFilteredList,setPagination} = state;
     const PAGE_SIZE = calculatePageSize();
-    // let newPag = (pagination - PAGE_SIZE) < 0 ? 0 : pagination - PAGE_SIZE;
 	let newPag = 0;
 	switch (amount) {
 		case "first": newPag = 0 ;break;
