@@ -40,10 +40,11 @@
 		". ab0 ab0 ."
 		". ab1 ab1 ."
 		". ab2 ab2 .";
-	grid-template-columns: 1rem auto auto 1rem;
+	grid-template-columns: 1rem min-content min-content 1rem;
 	justify-content: center;
 	align-items: center;
 	width: min-content;
+	color: black;
 }
 .big-card-content > p {
 	margin: 0.3em 1em;
@@ -68,7 +69,7 @@
 }
 .poke-art{
 	grid-area: img;
-	max-width: 35vmin;
+	max-width: 30vmin;
 	min-width: 200px;
 	justify-self: center;
 	border: 1px solid black;
@@ -102,6 +103,7 @@
 	align-items: center;
 	height: 100%;
 	width: 20em;
+	color: black;
 }
 .big-card-info-left{
 	display: flex;

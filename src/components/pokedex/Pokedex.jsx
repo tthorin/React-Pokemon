@@ -1,9 +1,10 @@
-import { useState, useEffect,createRef } from 'react';
 import "./pokedex.css"
+import { useState, useEffect } from 'react';
+import {updateFetched,searchTermEffect} from './pokedexUtilities';
 import PokedexSmallCard from "./PokedexSmallCard";
 import Search from "./Search";
 import calculatePageSize from './calculatePageSize';
-import {updateFetched,pagNext,pagPrev,searchTermEffect} from './pokedexUtilities';
+import PokedexInfoArea from './PokedexInfoArea';
 
 const Pokedex = ({pokedexOnboarding, fetched,setFetched,pokeList,showBig}) => {
 	let PAGE_SIZE = 8;
@@ -39,15 +40,7 @@ const Pokedex = ({pokedexOnboarding, fetched,setFetched,pokeList,showBig}) => {
 	return(
 		<div className="pokedex">
 			<Search pokedexOnboarding={pokedexOnboarding} pokeList={pokeList} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
-			<div className="pokedex-info-area">
-			{searchTerm.length > 2 || searchTerm.substring(0,1)==="#"?
-				<p>Search matched {filteredList.length} Pokémons</p>
-				:<div>
-					<button disabled={pagination===0} onClick={()=>pagPrev(pokedexState)}>Prev</button>
-					<p>showing {pagination+1} - {pagination+PAGE_SIZE} out of {pokeList.length} Pokémons</p>
-					<button disabled={pagination+calculatePageSize()>pokeList.length} onClick={()=>pagNext(pokedexState)}>Next</button>
-				</div>}
-			</div>
+			<PokedexInfoArea pokedexState={pokedexState}/>
 			<div className="pokedex-container">
 				{pagination !==null  && filteredList.map(p=>{return (<PokedexSmallCard key={p.name} showBig={showBig} pokemon={fetched.find(f=>f.name===p.name)}/>)})}
 				{filteredList.length === 0 ? <div className='nothing-found'><img src="./src/images/Spr_5b2_025_m.png" alt="" /> <p>Sorry, nothing found :(</p></div> : null}

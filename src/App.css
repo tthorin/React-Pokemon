@@ -2,6 +2,7 @@ body {
   font-family: "Maven Pro", sans-serif;
   margin: 0em;
   padding: 0em;
+  color: aliceblue;
 }
 
 .pika {
@@ -53,7 +54,6 @@ nav {
   background-color: #afafaf;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-evenly; */
   text-align: center;
   width: 8vw;
   padding: 1em 2em;
@@ -79,9 +79,12 @@ nav a {
 nav > a.active {
   filter: drop-shadow(0px 0px 1em #ffff2d);
 }
+nav > .nav-home-link,
+.nav-copyright-link {
+  display: none;
+}
 main {
   grid-area: m;
-  /* background-color: lightblue; */
   background: repeating-linear-gradient(
     -45deg,
     #f2f2f2,
@@ -131,7 +134,14 @@ button:disabled {
 button:active {
   transform: scale(1);
 }
+footer {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 0em 1em;
+}
 
+/*--------------Begin max width 1000px------------------------------------*/
 @media screen and (max-width: 1000px) {
   .app-container {
     display: grid;
@@ -143,7 +153,6 @@ button:active {
     grid-template-rows: fit-content 1fr 5vh;
   }
   .logo {
-    /* height: fit-content; */
     width: 85%;
     z-index: 2;
     align-self: center;
@@ -155,7 +164,6 @@ button:active {
 
   nav {
     grid-area: n;
-    /* background-color: #afafaf; */
     margin: 0;
     padding: 0;
     display: flex;
@@ -165,11 +173,13 @@ button:active {
     text-align: center;
     width: auto;
   }
+  /*--------------Begin max width 1000px && max-height: 1000------------------------------------*/
   @media screen and (max-height: 1000px) {
     nav {
       flex-direction: column;
     }
   }
+  /*--------------End max width 1000px && max-height: 1000------------------------------------*/
   nav > a {
     margin: 0em;
     padding: 0em;
@@ -181,11 +191,20 @@ button:active {
     filter: drop-shadow(0px 0px 0.3em #ffff2a);
     color: #ffff2a;
   }
+  nav > a.nav-copyright-link {
+    font-size: 0.8em;
+    display: initial;
+    align-self: flex-start;
+    padding: 0.5em 0em;
+  }
+
   main {
     min-height: 90vh;
   }
 }
+/*--------------End max width 1000px------------------------------------*/
 
+/*--------------Begin max height 1000px------------------------------------*/
 @media screen and (max-height: 1000px) {
   .app-container {
     display: grid;
@@ -228,31 +247,39 @@ button:active {
     justify-content: start;
     align-items: center;
   }
+  nav > a.nav-home-link,
+  a.nav-copyright-link {
+    display: initial;
+  }
+  nav > a.nav-copyright-link {
+    font-size: 0.7em;
+  }
 }
+/*--------------End max height 1000px------------------------------------*/
+/*--------------Begin max width 600px------------------------------------*/
 @media screen and (max-width: 600px) {
-	div.big-card-backdrop {
-		flex-direction: column;
-		justify-content:space-evenly;
-	}
-	div.carousel-container{
-		grid-template-areas: "b1 b2"
-							"car car";
-		grid-template-columns: 1fr 1fr;
-		padding: 0;
-		grid-template-rows: auto 1fr;
-						
-	}
-	div.carousel-container > button {
-		grid-area: b1;
-	}
-	div.carousel-container > button.move {
-		grid-area: b2;
-		justify-self: center;
-	}
-	div.carousel-scene {
-		grid-area: car;
-		justify-self: center;
-	}
-
-
+  div.big-card-backdrop {
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  div.carousel-container {
+    grid-template-areas:
+      "b1 b2"
+      "car car";
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+    grid-template-rows: auto 1fr;
+  }
+  div.carousel-container > button {
+    grid-area: b1;
+  }
+  div.carousel-container > button.move {
+    grid-area: b2;
+    justify-self: center;
+  }
+  div.carousel-scene {
+    grid-area: car;
+    justify-self: center;
+  }
 }
+/*--------------End max width 600px------------------------------------*/

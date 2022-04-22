@@ -1,16 +1,12 @@
-import { useState, useEffect,createRef } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  NavLink,
-} from "react-router-dom";
+import { useState, useEffect } from "react";
+import {BrowserRouter as Router} from "react-router-dom";
 import "./App.css";
-import Pokedex from "./components/pokedex/Pokedex";
 import LoadSplash from "./components/LoadSplash";
 import BigCardDisplay from "./components/bigCard/BigCardDisplay";
-import TeamCarousel from "./components/carousel/TeamCarousel";
-import Home from "./components/Home";
+import Nav from "./components/nav/Nav";
+import Main from "./components/main/Main";
+import Footer from "./components/footer/Footer";
+import Header from "./components/header/Header";
 
 const URL = "https://pokeapi.co/api/v2/";
 const FULL_LIST = "pokemon?limit=1200&offset=0";
@@ -22,51 +18,43 @@ function App() {
   const [fetchedPokemons,setFetchedPokemons] = useState([]);
   const [pokeTeamId,setPokeTeamId] = useState(0);
   const [pokedexOnboardingShown,setPokedexOnboardingShown] = useState(false);
-
-  const pokedexOnboarding = {shown:pokedexOnboardingShown,setShown:setPokedexOnboardingShown};
+  
+  const appState = {
+	pokeList,
+	setPokeList,
+	isLoading,
+	setIsLoading,
+	bigCard,
+	setBigCard,
+	fetchedPokemons,
+	setFetchedPokemons,
+	pokeTeamId,
+	setPokeTeamId,
+	pokedexOnboardingShown,
+	setPokedexOnboardingShown,
+  }
 
   useEffect(async () => {
     const response = await fetch(URL + FULL_LIST);
 	const data = await response.json();
 	setPokeList(data.results);
-	setIsLoading(false);
   }, []);
-
-  const mainRef = createRef();
+  
+  useEffect(()=>{
+	  setIsLoading(pokeList===null);
+  },[pokeList])
 
   if (isLoading) return <LoadSplash />;
   else {
     return (
       <Router>
-	    {bigCard && <BigCardDisplay teamId={pokeTeamId} setTeamId={setPokeTeamId} poke={bigCard} show={setBigCard}/>}
-      <div className="app-container">
-        <header>
-			<NavLink to="/"><img className="logo" src="./src/images/pokemon-logo.png" alt="" /></NavLink>
-		</header>
-        {/* <nav>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/pokedex">Pokedex</NavLink>
-        </nav> */}
-        <nav>
-			<NavLink to="/pokedex"><img src="./src/images/240px-479Rotom-Pokédex_2.png" alt="" />Pokédex</NavLink>
-			<NavLink to="/team"><img src="./src/images/Pokemon-PNG-Pic.png" alt="" />Your Team</NavLink>
-        </nav>
-        <main ref={mainRef}>
-          <Routes>
-            <Route
-              path="/pokedex"
-              element={<Pokedex mainRef={mainRef} pokedexOnboarding={pokedexOnboarding} showBig={setBigCard} pokeList={pokeList} fetched={fetchedPokemons} setFetched={setFetchedPokemons} />}
-            />
-            <Route path="/team" element={<TeamCarousel />} />
-			<Route path="/" element={<Home/>}/>
-          </Routes>
-        </main>
-        <footer>
-        </footer>
-        
-      </div>
-  
-      
+		{bigCard && <BigCardDisplay teamId={pokeTeamId} setTeamId={setPokeTeamId} poke={bigCard} show={setBigCard}/>}
+		<div className="app-container">
+			<Header/>
+			<Nav />
+			<Main appState={appState}/>
+			<Footer/>
+		</div>
       </Router>
     );
   }

@@ -36,6 +36,7 @@
 	user-select: none;
 	pointer-events: none;
 	overflow: hidden;
+	color: #484848;
 }
 .search > p {
 	position:absolute;

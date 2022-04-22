@@ -19,10 +19,40 @@
 }
 @keyframes neon {
 	from {
-		text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #091faa, 0 0 40px #091faa, 0 0 50px #091faa, 0 0 60px #091faa;
+		text-shadow: 0 0 10px #fff, 0 0 30px #091faa, 0 0 40px #091faa, 0 0 50px #091faa, 0 0 60px #091faa;
 	  }
 	  to {
-		text-shadow: 0 0 20px #fff, 0 0 30px #102de6, 0 0 40px #102de6, 0 0 50px #102de6, 0 0 60px #102de6, 0 0 70px #102de6;
+		text-shadow: 0 0 10px #fff, 0 0 30px #102de6, 0 0 40px #102de6, 0 0 50px #102de6, 0 0 60px #102de6;
 	  }
 
+}
+
+.home-background{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: url(../images/20996v3.jpg) no-repeat center;
+	background-size: cover;
+	color: white;
+	height: 100%;
+}
+.home-backdrop{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.476);
+	padding: 2em;
+	border-radius: 1em;
+}
+.credits-container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: #4e4e4e;
+}
+.credits-container > h1{
+	text-decoration: underline;
 }
