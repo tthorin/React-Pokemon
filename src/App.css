@@ -1,45 +1,300 @@
-.ball  {
-	animation-name: spin;
-	animation-duration: 3s;
-	animation-iteration-count: infinite;
-	animation-timing-function: linear;
+body {
+  font-family: "Maven Pro", sans-serif;
+  margin: 0em;
+  padding: 0em;
+  color: #4e4e4e;
+}
+button,a{
+	color: aliceblue;
 }
 
-@keyframes spin {
-	100% {transform: rotate(360deg);}
-}
 .pika {
-	width: 20em;
+  width: 20em;
 }
-.search {
-	position:relative;
-	font-size: 1.3em;
+.app-container {
+  display: grid;
+  grid-template-areas:
+    "h h h"
+    "n m m"
+    "f f f";
+  grid-template-columns: auto 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
 }
-.search >label {
-	/* font-size: 1.3em; */
+.app-container > header {
+  grid-area: h;
+  display: flex;
+  width: auto;
+  height: 10vh;
 }
-.search > input {
-	font-size: 1.3em;
-}
-.search-dropdown-list li {
-	list-style: none;
-	cursor: pointer;
-}
-.search-dropdown-list li:hover {
-	background-color: #49a2cc;
+.app-container > header > a {
+  width: fit-content;
+  align-self: center;
+  justify-self: center;
 }
 
-.search-dropdown-list {
-	position:absolute;
-	background-color:white;
-	border:1px solid #ccc;
-	border-top:none;
-	max-height:200px;
-	overflow:auto;
-	z-index:1;
-	left: 2em;
-	margin-top: 0.2em;
-	margin-left: 1em;
-	/* font-size: 1.5em; */
-	padding: 0.3em 1em;
+.logo {
+  height: fit-content;
+  width: 20%;
+  z-index: 1;
 }
+nav,
+footer,
+.app-container > header {
+  background: repeating-linear-gradient(
+    -45deg,
+    #4e4e4e,
+    #4e4e4e 20px,
+    #333333 20px,
+    #333333 30px,
+    #4e4e4e 30px,
+    #4e4e4e 60px,
+    #333333 60px,
+    #333333 90px
+  );
+}
+nav {
+  grid-area: n;
+  background-color: #afafaf;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 8vw;
+  padding: 1em 2em;
+  background: repeating-linear-gradient(
+    -45deg,
+    #4e4e4e,
+    #4e4e4e 20px,
+    #333333 20px,
+    #333333 30px,
+    #4e4e4e 30px,
+    #4e4e4e 60px,
+    #333333 60px,
+    #333333 90px
+  );
+}
+nav img {
+  width: 100%;
+}
+nav a {
+  color: aliceblue;
+  margin: 2em 0.3em;
+}
+nav > a.active {
+  filter: drop-shadow(0px 0px 1em #ffff2d);
+}
+nav > .nav-home-link,
+.nav-copyright-link {
+  display: none;
+}
+main {
+  grid-area: m;
+  background: repeating-linear-gradient(
+    -45deg,
+    #f2f2f2,
+    #f2f2f2 20px,
+    #ececec 20px,
+    #ececec 30px,
+    #f2f2f2 30px,
+    #f2f2f2 60px,
+    #ececec 60px,
+    #ececec 90px
+  );
+  width: auto;
+  min-height: 86vh;
+}
+footer {
+  grid-area: f;
+  background-color: blue;
+  display: flex;
+  width: auto;
+  height: 4vh;
+}
+footer>p{
+	color: aliceblue;
+}
+button {
+  font-family: "Maven Pro", sans-serif;
+  appearance: none;
+  border: none;
+  border-radius: 0.2em;
+  padding: 0.2em 0.5em;
+  text-align: center;
+  border: 3px solid #f48320;
+  background-color: #f48320;
+  color: white;
+  transition: all 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+button:hover {
+  cursor: pointer;
+  background-color: #d66e13;
+  border-color: #d66e13;
+  transform: scale(1.05);
+}
+button:disabled {
+  background-color: #f2f2f2;
+  color: #f2c39a;
+  border-color: #f2c39a;
+  cursor: default;
+  transform: scale(1);
+}
+button:active {
+  transform: scale(1);
+}
+footer {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 0em 1em;
+}
+
+/*--------------Begin max width 1000px------------------------------------*/
+@media screen and (max-width: 1000px) {
+  .app-container {
+    display: grid;
+    grid-template-areas:
+      "h n n"
+      "m m m"
+      "f f f";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: fit-content 1fr 5vh;
+  }
+  .logo {
+    width: 85%;
+    z-index: 2;
+    align-self: center;
+  }
+
+  div.carousel-container {
+    padding-top: 5vw;
+  }
+
+  nav {
+    grid-area: n;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    width: auto;
+  }
+  nav > a.nav-copyright-link {
+	font-size: 0.8em;
+	display: initial;
+	align-self: flex-start;
+	padding: 0.5em 0em;
+  }
+  /*--------------Begin max width 1000px && max-height: 1000------------------------------------*/
+  @media screen and (max-height: 1000px) {
+    nav {
+      flex-direction: column;
+    }
+	nav > a.nav-copyright-link{
+		padding-right: 2em;
+		align-self: unset;
+	}
+  }
+  /*--------------End max width 1000px && max-height: 1000------------------------------------*/
+  nav > a {
+    margin: 0em;
+    padding: 0em;
+  }
+  nav > a > img {
+    display: none;
+  }
+  nav > a.active {
+    filter: drop-shadow(0px 0px 0.3em #ffff2a);
+    color: #ffff2a;
+  }
+
+  main {
+    min-height: 90vh;
+  }
+}
+/*--------------End max width 1000px------------------------------------*/
+
+/*--------------Begin max height 1000px------------------------------------*/
+@media screen and (max-height: 1000px) {
+  .app-container {
+    display: grid;
+    grid-template-areas:
+      "n m m"
+      "n m m"
+      "n m m"
+      "n m m";
+    grid-template-columns: auto 1fr 1fr;
+    grid-template-rows: 5vh 5vh 1fr 5vh;
+  }
+  .app-container > header {
+    display: none;
+    transform: rotate(-90deg);
+    width: auto;
+  }
+  .carousel-container {
+    margin: 0;
+    padding: 0;
+    height: 0;
+  }
+  main {
+    min-height: 100vh;
+  }
+  footer {
+    display: none;
+  }
+  nav img {
+    display: none;
+  }
+  nav a {
+    transform: rotate(-90deg);
+    margin: 5em 0.2em;
+    width: max-content;
+    height: fit-content;
+  }
+  nav {
+    width: 4vw;
+    padding: 0.5em;
+    justify-content: start;
+    align-items: center;
+  }
+  nav > a.nav-home-link,
+  a.nav-copyright-link {
+    display: initial;
+  }
+  nav > a.nav-copyright-link {
+    font-size: 0.7em;
+  }
+}
+/*--------------End max height 1000px------------------------------------*/
+/*--------------Begin max width 600px------------------------------------*/
+@media screen and (max-width: 800px) {
+  div.big-card-backdrop {
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  div.carousel-container {
+    grid-template-areas:
+      "b1 b2"
+      "car car";
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+    grid-template-rows: auto 1fr;
+  }
+  div.carousel-container > button {
+    grid-area: b1;
+  }
+  div.carousel-container > button.move {
+    grid-area: b2;
+    justify-self: center;
+  }
+  div.carousel-scene {
+    grid-area: car;
+    justify-self: center;
+  }
+  .pokedex-info-area>div> button,.pokedex-info-area>div> p{
+	  padding: 0.2em;
+	  margin: 0.2em;
+	  font-size: 0.8em;
+  }
+}
+/*--------------End max width 600px------------------------------------*/

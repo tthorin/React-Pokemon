@@ -1,38 +1,63 @@
-import { useState, useEffect } from 'react'
-import { BrowserRouter, NavLink, Router, Routes, Route } from 'react-router-dom'
-import './App.css'
-import Search from './components/Search'
+import { useState, useEffect } from "react";
+import {BrowserRouter as Router} from "react-router-dom";
+import "./App.css";
+import LoadSplash from "./components/main/LoadSplash";
+import BigCardDisplay from "./components/bigCard/BigCardDisplay";
+import Nav from "./components/nav/Nav";
+import Main from "./components/main/Main";
+import Footer from "./components/footer/Footer";
+import Header from "./components/header/Header";
 
-const URL = "https://pokeapi.co/api/v2/"
-const FULL_LIST= "pokemon?limit=1200&offset=0"
 
 function App() {
-  const [pokeList, setPokeList] = useState(null)
-  const [isLoading,setIsLoading] = useState(false)
+  const URL = "https://pokeapi.co/api/v2/";
+  const FULL_LIST = "pokemon?limit=1200&offset=0";
+  const [pokeList, setPokeList] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [bigCard, setBigCard] = useState(null);
+  const [fetchedPokemons,setFetchedPokemons] = useState([]);
+  const [pokeTeamId,setPokeTeamId] = useState(0);
+  const [pokedexOnboardingShown,setPokedexOnboardingShown] = useState(false);
+  
+  const appState = {
+	pokeList,
+	setPokeList,
+	isLoading,
+	setIsLoading,
+	bigCard,
+	setBigCard,
+	fetchedPokemons,
+	setFetchedPokemons,
+	pokeTeamId,
+	setPokeTeamId,
+	pokedexOnboardingShown,
+	setPokedexOnboardingShown,
+  }
+
+  useEffect(async () => {
+    const response = await fetch(URL + FULL_LIST);
+	const data = await response.json();
+	setPokeList(data.results);
+  }, []);
 
   useEffect(()=>{
-	setIsLoading(true)
-	fetch(URL+FULL_LIST)
-	.then(res => res.json())
-	.then(data => {
-	  setPokeList(data.results)
-	  setIsLoading(false)
-	})
-	console.log(pokeList)
-  },[])
- 
-  return (
-	  <main>
-		<section>hello world</section>
-		<div className="loading">
-			<img className="ball" src="./src/favicon.png" alt="" />
-			<img className="pika" src="./src/images/Spr_5b2_025_m.png" alt="" />
+	  setIsLoading(pokeList===null);
+  },[pokeList])
+
+  if (isLoading) return <LoadSplash />;
+  else {
+    return (
+      <Router>
+		{bigCard && <BigCardDisplay teamId={pokeTeamId} setTeamId={setPokeTeamId} poke={bigCard} show={setBigCard}/>}
+		<div className="app-container">
+			<Header/>
+			<Nav />
+			<Main appState={appState}/>
+			<Footer/>
 		</div>
-		<Search pokeList = {pokeList}/>
-
-	  </main>
-
-  )
+      </Router>
+    );
+  }
 }
 
-export default App
+export default App;

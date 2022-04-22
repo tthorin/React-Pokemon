@@ -1,0 +1,52 @@
+.pokedex-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
+	row-gap: 5.5em;
+	column-gap: 4em;
+	padding: 2em 5em;
+	/* height: 100%; */
+}
+
+.pokedex-info-area{
+	display:flex;
+	justify-content:space-evenly;
+	align-items:center;
+	color: black;
+	padding-bottom: 1em;
+}
+.pokedex-info-area>div{
+	display:flex;
+	justify-content:space-evenly;
+	align-items:center;
+	width: 100%;
+}
+.pokedex-info-area p {
+	display:inline-block;
+	margin: 0;
+	font-size: 1.3em;
+}
+.pokedex-info-area button{
+	font-size: 1.1em;
+	padding: 0.4em 1em;
+}
+.pokedex {
+	background: repeating-linear-gradient(
+			-45deg,
+			#f2f2f2,
+			#f2f2f2 20px,
+			#ececec 20px,
+			#ececec 30px,
+			#f2f2f2 30px,
+			#f2f2f2 60px,
+			#ececec 60px,
+			#ececec 90px
+		);
+	overflow-x: hidden;
+}
+.nothing-found{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
