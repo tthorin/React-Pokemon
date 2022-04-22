@@ -105,6 +105,9 @@
 	width: 20em;
 	color: black;
 }
+.big-card-empty-slot a{
+	color: #4f4f4f;
+}
 .big-card-info-left{
 	display: flex;
 	flex-direction: column;

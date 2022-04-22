@@ -56,3 +56,6 @@
 .credits-container > h1{
 	text-decoration: underline;
 }
+.credits-container > a{
+	color: #4e4e4e;
+}

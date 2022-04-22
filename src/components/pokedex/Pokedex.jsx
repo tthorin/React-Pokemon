@@ -9,7 +9,7 @@ import PokedexInfoArea from './PokedexInfoArea';
 const Pokedex = ({pokedexOnboarding, fetched,setFetched,pokeList,showBig}) => {
 	let PAGE_SIZE = 8;
 	const [pagination,setPagination] = useState(0);
-	const [filteredList,setFilteredList] = useState(pokeList.slice(pagination,pagination+8));
+	const [filteredList,setFilteredList] = useState(pokeList.slice(pagination,pagination+calculatePageSize()));
 	const [searchTerm, setSearchTerm] = useState('');
 
 	const pokedexState = {

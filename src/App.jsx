@@ -8,10 +8,10 @@ import Main from "./components/main/Main";
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 
-const URL = "https://pokeapi.co/api/v2/";
-const FULL_LIST = "pokemon?limit=1200&offset=0";
 
 function App() {
+  const URL = "https://pokeapi.co/api/v2/";
+  const FULL_LIST = "pokemon?limit=1200&offset=0";
   const [pokeList, setPokeList] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [bigCard, setBigCard] = useState(null);
@@ -39,7 +39,7 @@ function App() {
 	const data = await response.json();
 	setPokeList(data.results);
   }, []);
-  
+
   useEffect(()=>{
 	  setIsLoading(pokeList===null);
   },[pokeList])

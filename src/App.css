@@ -2,7 +2,10 @@ body {
   font-family: "Maven Pro", sans-serif;
   margin: 0em;
   padding: 0em;
-  color: aliceblue;
+  color: #4e4e4e;
+}
+button,a{
+	color: aliceblue;
 }
 
 .pika {
@@ -106,6 +109,9 @@ footer {
   width: auto;
   height: 4vh;
 }
+footer>p{
+	color: aliceblue;
+}
 button {
   font-family: "Maven Pro", sans-serif;
   appearance: none;
@@ -173,11 +179,21 @@ footer {
     text-align: center;
     width: auto;
   }
+  nav > a.nav-copyright-link {
+	font-size: 0.8em;
+	display: initial;
+	align-self: flex-start;
+	padding: 0.5em 0em;
+  }
   /*--------------Begin max width 1000px && max-height: 1000------------------------------------*/
   @media screen and (max-height: 1000px) {
     nav {
       flex-direction: column;
     }
+	nav > a.nav-copyright-link{
+		padding-right: 2em;
+		align-self: unset;
+	}
   }
   /*--------------End max width 1000px && max-height: 1000------------------------------------*/
   nav > a {
@@ -190,12 +206,6 @@ footer {
   nav > a.active {
     filter: drop-shadow(0px 0px 0.3em #ffff2a);
     color: #ffff2a;
-  }
-  nav > a.nav-copyright-link {
-    font-size: 0.8em;
-    display: initial;
-    align-self: flex-start;
-    padding: 0.5em 0em;
   }
 
   main {
