@@ -5,6 +5,7 @@ import PokedexSmallCard from "./PokedexSmallCard";
 import Search from "./Search";
 import calculatePageSize from './calculatePageSize';
 import PokedexInfoArea from './PokedexInfoArea';
+import pika from "../../images/pikaSprite.png"
 
 const Pokedex = ({pokedexOnboarding, fetched,setFetched,pokeList,showBig}) => {
 	let PAGE_SIZE = 8;
@@ -43,7 +44,7 @@ const Pokedex = ({pokedexOnboarding, fetched,setFetched,pokeList,showBig}) => {
 			<PokedexInfoArea pokedexState={pokedexState}/>
 			<div className="pokedex-container">
 				{pagination !==null  && filteredList.map(p=>{return (<PokedexSmallCard key={p.name} showBig={showBig} pokemon={fetched.find(f=>f.name===p.name)}/>)})}
-				{filteredList.length === 0 ? <div className='nothing-found'><img src="./src/images/Spr_5b2_025_m.png" alt="" /> <p>Sorry, nothing found :(</p></div> : null}
+				{filteredList.length === 0 ? <div className='nothing-found'><img src={pika} alt="" /> <p>Sorry, nothing found :(</p></div> : null}
 			</div>
 		</div>
 	)
