@@ -12,20 +12,36 @@ const updateFetched = async (arr,{fetched,setFetched}) => {
     setFetched(f=>f.concat(output));
 }
 
-const pagNext = (state) => {
+const pagNext = (state,amount) => {
     let {pagination,pokeList,setFilteredList,setPagination} = state;
     const PAGE_SIZE = calculatePageSize();
-    const newPag = pagination + PAGE_SIZE;
+    // const newPag = pagination + PAGE_SIZE;
+	let newPag = 0;
+	switch (amount) {
+		case "last": newPag = pokeList.length-PAGE_SIZE;break;
+		case "ten": newPag = (pagination + PAGE_SIZE*10) > pokeList.length ? pokeList.length-PAGE_SIZE : pagination + PAGE_SIZE*10;break;
+		case "one": newPag = (pagination + PAGE_SIZE) > pokeList.length ? pokeList.length-PAGE_SIZE : pagination + PAGE_SIZE;break;
+		default:
+			break;
+	}
     const newArr= pokeList.slice(newPag,newPag+PAGE_SIZE);
     setFilteredList(newArr);
     setPagination(newPag);
     updateFetched(newArr,state);
 }
 
-const pagPrev = (state) => {
+const pagPrev = (state,amount) => {
     let {pagination,pokeList,setFilteredList,setPagination} = state;
     const PAGE_SIZE = calculatePageSize();
-    const newPag = (pagination - PAGE_SIZE) < 0 ? 0 : pagination - PAGE_SIZE;
+    // let newPag = (pagination - PAGE_SIZE) < 0 ? 0 : pagination - PAGE_SIZE;
+	let newPag = 0;
+	switch (amount) {
+		case "first": newPag = 0 ;break;
+		case "ten": newPag = (pagination - PAGE_SIZE*10) < 0 ? 0 : pagination - PAGE_SIZE*10;break;
+		case "one": newPag = (pagination - PAGE_SIZE) < 0 ? 0 : pagination - PAGE_SIZE;break;
+		default:
+			break;
+	}
     const newArr= pokeList.slice(newPag,newPag+PAGE_SIZE);
     setFilteredList(newArr);
     setPagination(newPag);

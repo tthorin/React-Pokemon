@@ -1,4 +1,4 @@
-import "../load-splash.css";
+import "./load-splash.css";
 const Credits = () => {
 	
 	return (

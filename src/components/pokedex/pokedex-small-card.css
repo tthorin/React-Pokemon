@@ -23,7 +23,7 @@
 .small-card-content{
 	width: auto;
 	position: relative;
-	bottom: 2.5em;
+	bottom: 2.8em;
 	pointer-events: none;
 }
 .small-card-content > img {
@@ -37,7 +37,6 @@
 }
 .small-card-content > h3{
 	margin:0.5em 1em;
-	
 	width: auto;
 }
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import {BrowserRouter as Router} from "react-router-dom";
 import "./App.css";
-import LoadSplash from "./components/LoadSplash";
+import LoadSplash from "./components/main/LoadSplash";
 import BigCardDisplay from "./components/bigCard/BigCardDisplay";
 import Nav from "./components/nav/Nav";
 import Main from "./components/main/Main";

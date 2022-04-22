@@ -267,7 +267,7 @@ footer {
 }
 /*--------------End max height 1000px------------------------------------*/
 /*--------------Begin max width 600px------------------------------------*/
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   div.big-card-backdrop {
     flex-direction: column;
     justify-content: space-evenly;
@@ -290,6 +290,11 @@ footer {
   div.carousel-scene {
     grid-area: car;
     justify-self: center;
+  }
+  .pokedex-info-area>div> button,.pokedex-info-area>div> p{
+	  padding: 0.2em;
+	  margin: 0.2em;
+	  font-size: 0.8em;
   }
 }
 /*--------------End max width 600px------------------------------------*/
